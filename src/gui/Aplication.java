@@ -5,9 +5,12 @@
  */
 package gui;
 
+import classes.Jogo;
+import classes.Pangramas;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,17 +21,30 @@ public class Aplication extends javax.swing.JFrame {
     /**
      * Creates new form Aplication
      */
+    
+    private Color cinza = Color.GRAY;
+    private JButton btnLast;
+    private Color capsAux;
+    private boolean capsFlag;
+    private int i;
+    private Pangramas pangramas;
+    private Jogo game;
+    private int flagTeclas;
+    private boolean flagAjuda;
+    
     public Aplication() {
         
        
         initComponents();
         btnLast = null;
         capsFlag = false;
+        pangramas = new Pangramas();
+        pangramaLabel.setText(pangramas.carregarPangrama());
+        flagTeclas = 0;
+        flagAjuda = false;
+        
     }
-    private Color cinza = Color.GRAY;
-    private JButton btnLast;
-    private Color capsAux;
-    private boolean capsFlag;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,10 +54,16 @@ public class Aplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
-        pangrama = new javax.swing.JLabel();
-        descricao = new javax.swing.JLabel();
+        pangramaLabel = new javax.swing.JLabel();
+        descricaoLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         aspasBtn = new javax.swing.JButton();
         tBtn = new javax.swing.JButton();
@@ -99,11 +121,61 @@ public class Aplication extends javax.swing.JFrame {
         dBtn = new javax.swing.JButton();
         tresBtn = new javax.swing.JButton();
         cincoBtn = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        errosMsg = new javax.swing.JLabel();
+        acertosMsg = new javax.swing.JLabel();
+        percentMsg = new javax.swing.JLabel();
+        erroValor = new javax.swing.JLabel();
+        acertoValor = new javax.swing.JLabel();
+        percentValor = new javax.swing.JLabel();
+        simboloPercent = new javax.swing.JLabel();
+        modoAjuda = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        barraMenu = new javax.swing.JMenuBar();
+        menuOpcoes = new javax.swing.JMenu();
+        menuNovoJogo = new javax.swing.JMenuItem();
+        menuConfigPangrama = new javax.swing.JMenu();
+        gerarPangrama = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        pangramaIngles = new javax.swing.JMenuItem();
+        pangramaPortugues = new javax.swing.JMenuItem();
+        menuItemSair = new javax.swing.JMenuItem();
+        menuAjuda = new javax.swing.JMenu();
+        itemMenuAjuda = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jMenuItem3.setText("jMenuItem3");
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
+        jMenu2.setText("jMenu2");
+
+        jMenuItem4.setText("jMenuItem4");
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("aps_poo");
+        setResizable(false);
 
         textArea.setColumns(20);
         textArea.setRows(5);
+        textArea.setEnabled(false);
+        textArea.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                textAreaCaretUpdate(evt);
+            }
+        });
+        textArea.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                textAreaCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                textAreaInputMethodTextChanged(evt);
+            }
+        });
         textArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textAreaKeyPressed(evt);
@@ -117,23 +189,13 @@ public class Aplication extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(textArea);
 
-        pangrama.setText("Mensagem pangrama");
+        pangramaLabel.setText(" ");
 
-        descricao.setText("descricao");
+        descricaoLabel.setText("Duvidas? Acesse o menu ajuda para orientações");
 
         aspasBtn.setText("'");
         aspasBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         aspasBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        aspasBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aspasBtnActionPerformed(evt);
-            }
-        });
-        aspasBtn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aspasBtnKeyPressed(evt);
-            }
-        });
 
         tBtn.setText("T");
         tBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -408,11 +470,6 @@ public class Aplication extends javax.swing.JFrame {
             umBtn.setText("1");
             umBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             umBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            umBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    umBtnActionPerformed(evt);
-                }
-            });
 
             nBtn.setText("N");
             nBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -788,9 +845,8 @@ public class Aplication extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(wBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(eBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tabBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(qBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tabBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(qBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(capsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -833,47 +889,190 @@ public class Aplication extends javax.swing.JFrame {
                     .addContainerGap())
             );
 
+            lblTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+            lblTitulo.setText("PANGRAMA");
+
+            errosMsg.setForeground(new java.awt.Color(255, 0, 0));
+            errosMsg.setText("Erros");
+
+            acertosMsg.setForeground(new java.awt.Color(0, 153, 204));
+            acertosMsg.setText("Acertos");
+
+            percentMsg.setForeground(new java.awt.Color(0, 102, 0));
+            percentMsg.setText("Porcentagem");
+
+            erroValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            erroValor.setText("0");
+
+            acertoValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            acertoValor.setText("0");
+
+            percentValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            percentValor.setText("0");
+
+            simboloPercent.setText("%");
+
+            modoAjuda.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+            modoAjuda.setForeground(new java.awt.Color(255, 0, 0));
+
+            jLabel1.setText("v1.0");
+
+            menuOpcoes.setText("Opções");
+
+            menuNovoJogo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+            menuNovoJogo.setText("Novo Jogo");
+            menuNovoJogo.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    menuNovoJogoActionPerformed(evt);
+                }
+            });
+            menuOpcoes.add(menuNovoJogo);
+
+            menuConfigPangrama.setText("Configurações Pangramas");
+
+            gerarPangrama.setText("Gerar outro pangrama");
+            gerarPangrama.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    gerarPangramaActionPerformed(evt);
+                }
+            });
+            menuConfigPangrama.add(gerarPangrama);
+
+            jMenu3.setText("Linguagem Pangrama");
+
+            pangramaIngles.setText("Inglês");
+            pangramaIngles.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    pangramaInglesActionPerformed(evt);
+                }
+            });
+            jMenu3.add(pangramaIngles);
+
+            pangramaPortugues.setText("Português");
+            pangramaPortugues.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    pangramaPortuguesActionPerformed(evt);
+                }
+            });
+            jMenu3.add(pangramaPortugues);
+
+            menuConfigPangrama.add(jMenu3);
+
+            menuOpcoes.add(menuConfigPangrama);
+
+            menuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+            menuItemSair.setText("Sair");
+            menuItemSair.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    menuItemSairActionPerformed(evt);
+                }
+            });
+            menuOpcoes.add(menuItemSair);
+
+            barraMenu.add(menuOpcoes);
+
+            menuAjuda.setText("Ajuda");
+            menuAjuda.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    menuAjudaActionPerformed(evt);
+                }
+            });
+
+            itemMenuAjuda.setText("Ajuda");
+            itemMenuAjuda.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    itemMenuAjudaActionPerformed(evt);
+                }
+            });
+            menuAjuda.add(itemMenuAjuda);
+
+            barraMenu.add(menuAjuda);
+
+            setJMenuBar(barraMenu);
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(29, 29, 29)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
-                        .addComponent(pangrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(29, 29, 29)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(31, 31, 31))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(pangramaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblTitulo)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(75, 75, 75)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(descricaoLabel)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(erroValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(errosMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(50, 50, 50)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(acertosMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(acertoValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(48, 48, 48)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(percentMsg)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(simboloPercent)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(jLabel1)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(pangrama)
-                    .addGap(15, 15, 15)
-                    .addComponent(descricao)
+                    .addComponent(descricaoLabel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(17, 17, 17)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(percentMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblTitulo)
+                                    .addComponent(errosMsg)
+                                    .addComponent(acertosMsg))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(percentValor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pangramaLabel)
+                            .addComponent(erroValor)
+                            .addComponent(acertoValor)
+                            .addComponent(simboloPercent)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26))
+                    .addGap(12, 12, 12)
+                    .addComponent(jLabel1))
             );
 
             pack();
             setLocationRelativeTo(null);
         }// </editor-fold>//GEN-END:initComponents
-
-    private void aspasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aspasBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_aspasBtnActionPerformed
-
-    private void umBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_umBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_umBtnActionPerformed
 
     private void doisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doisBtnActionPerformed
         // TODO add your handling code here:
@@ -1087,24 +1286,142 @@ public class Aplication extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rightBtnActionPerformed
 
-    private void aspasBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aspasBtnKeyPressed
-      
-    }//GEN-LAST:event_aspasBtnKeyPressed
-
     private void textAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyPressed
         trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()));
-        
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_BACKSPACE:
+                flagTeclas = 1;
+                break;
+            default:
+                flagTeclas = 0;
+                break;
+        }
     }//GEN-LAST:event_textAreaKeyPressed
 
     private void textAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyReleased
-        // TODO add your handling code here:
-        
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER||flagAjuda){
+            textArea.setEditable(true);
+            modoAjuda.setText("");
+            menuOpcoes.setEnabled(true);
+            menuAjuda.setEnabled(true);
+            flagAjuda=false;
+            newGameStats();
+        }
     }//GEN-LAST:event_textAreaKeyReleased
 
     private void textAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyTyped
         
     }//GEN-LAST:event_textAreaKeyTyped
-      
+
+    private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
+        i = JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza que deseja sair?", DISPOSE_ON_CLOSE);
+        if (i==0) {
+             System.exit(0);
+        }
+    }//GEN-LAST:event_menuItemSairActionPerformed
+
+    private void pangramaInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaInglesActionPerformed
+        if(pangramas.alterarTipoPangrama(1)==-1){
+            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");
+        }else{
+            carregarPangrama();
+        }
+    }//GEN-LAST:event_pangramaInglesActionPerformed
+
+    private void pangramaPortuguesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaPortuguesActionPerformed
+        if(pangramas.alterarTipoPangrama(0)==-1){
+            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");
+        }else{
+            carregarPangrama();
+        }
+    }//GEN-LAST:event_pangramaPortuguesActionPerformed
+    private void gerarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPangramaActionPerformed
+        carregarPangrama();
+    }//GEN-LAST:event_gerarPangramaActionPerformed
+
+    private void menuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjudaActionPerformed
+        
+       
+    }//GEN-LAST:event_menuAjudaActionPerformed
+
+    private void menuNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoJogoActionPerformed
+        newGameStats();
+        
+    }//GEN-LAST:event_menuNovoJogoActionPerformed
+    private void newGameStats(){
+        game = new Jogo();
+        game.inicioJogo(pangramaLabel.getText());
+        textArea.setEnabled(true);
+        carregarPangrama();
+        percentValor.setText("0");
+        erroValor.setText("0");
+        acertoValor.setText("0");
+        textArea.setText("");
+        textArea.grabFocus();
+        
+    }
+    private void textAreaCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_textAreaCaretPositionChanged
+        
+    }//GEN-LAST:event_textAreaCaretPositionChanged
+
+    private void textAreaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_textAreaInputMethodTextChanged
+       
+    }//GEN-LAST:event_textAreaInputMethodTextChanged
+
+    private void textAreaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textAreaCaretUpdate
+        if(!flagAjuda){
+            int tamanho = textArea.getText().length();
+            if(flagTeclas == 0){
+                if(game.contagem(pangramaLabel.getText(),textArea.getText().charAt(tamanho-1))){
+                    acertoValor.setText(Integer.toString(game.getAcertos())); 
+
+                }else{
+                    erroValor.setText(Integer.toString(game.getErros()));
+                }
+                percentValor.setText(String.format(Float.toString(game.getPercent()),"%.2f"));
+            }
+            if(game.fimJogo()){
+                JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
+                        + percentValor.getText(), "Pangrama completo!", 1);
+                textArea.setEnabled(false);
+
+            }
+        }
+    }//GEN-LAST:event_textAreaCaretUpdate
+
+    private void itemMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAjudaActionPerformed
+        flagAjuda=true;
+        menuOpcoes.setEnabled(false);
+        menuAjuda.setEnabled(false);
+        modoAjuda.setText("MODO AJUDA");
+        if(!textArea.isEnabled()){
+            textArea.setEnabled(true);
+        }
+        textArea.setEditable(false);
+        textArea.setText("Este é um jogo treinamento de digitação.\n" +
+"Se consiste em digitar corretamente todo pangrama com o objetivo\n" +
+"de conseguir a maior porcentagem de aproveitamento de acertos possivel.\n" +
+"São existentes pangramas em inglês e português.\n" +
+"Por padrão os pangramas na linguagem português vem habilitados.\n" +
+"Acesse o menu 'Configurações Pangramas', 'Linguagem Pangrama' e selecione\n" +
+"o idioma de preferencia.\n" +
+"É possível gerar um outro pangrama randomicamente acessando a opção\n" +
+"'Gerar outro pangrama' dentro de 'Configurações Pangramas'.\n" +
+"Para resetar seu jogo Acesse a opção 'Novo jogo' ou pressione as teclas CTRL + N.\n" +
+"\n" +
+"Pressione Enter para sair do modo Ajuda.");
+        textArea.grabFocus();
+        
+    }//GEN-LAST:event_itemMenuAjudaActionPerformed
+    
+    private void carregarPangrama(){
+        String pangrama;
+        pangrama = pangramas.carregarPangrama();
+        while(pangramaLabel.getText().equals(pangrama)){
+            pangrama = pangramas.carregarPangrama();
+        }
+        pangramaLabel.setText(pangrama);
+    }
     private JButton verificaTeclaInput(char letra,int button){
         switch (button){
             case KeyEvent.VK_QUOTE:
@@ -1343,10 +1660,13 @@ public class Aplication extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aBtn;
+    private javax.swing.JLabel acertoValor;
+    private javax.swing.JLabel acertosMsg;
     private javax.swing.JButton aspasBtn;
     private javax.swing.JButton bBtn;
     private javax.swing.JButton backspcBtn;
     private javax.swing.JButton barraBtn;
+    private javax.swing.JMenuBar barraMenu;
     private javax.swing.JButton cBtn;
     private javax.swing.JButton capsBtn;
     private javax.swing.JButton cdilhaBtn;
@@ -1354,30 +1674,53 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JButton concLeftBtn;
     private javax.swing.JButton concRightBtn;
     private javax.swing.JButton dBtn;
-    private javax.swing.JLabel descricao;
+    private javax.swing.JLabel descricaoLabel;
     private javax.swing.JButton doisBtn;
     private javax.swing.JButton downBtn;
     private javax.swing.JButton eBtn;
     private javax.swing.JButton enterBtn;
+    private javax.swing.JLabel erroValor;
+    private javax.swing.JLabel errosMsg;
     private javax.swing.JButton fBtn;
     private javax.swing.JButton gBtn;
+    private javax.swing.JMenuItem gerarPangrama;
     private javax.swing.JButton hBtn;
     private javax.swing.JButton iBtn;
+    private javax.swing.JMenuItem itemMenuAjuda;
     private javax.swing.JButton jBtn;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kbtn;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JButton lbtn;
     private javax.swing.JButton leftBtn;
     private javax.swing.JButton mBtn;
     private javax.swing.JButton maisBtn;
     private javax.swing.JButton menosBtn;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuConfigPangrama;
+    private javax.swing.JMenuItem menuItemSair;
+    private javax.swing.JMenuItem menuNovoJogo;
+    private javax.swing.JMenu menuOpcoes;
+    private javax.swing.JLabel modoAjuda;
     private javax.swing.JButton nBtn;
     private javax.swing.JButton noveBtn;
     private javax.swing.JButton oBtn;
     private javax.swing.JButton oitoBtn;
     private javax.swing.JButton pBtn;
-    private javax.swing.JLabel pangrama;
+    private javax.swing.JMenuItem pangramaIngles;
+    private javax.swing.JLabel pangramaLabel;
+    private javax.swing.JMenuItem pangramaPortugues;
+    private javax.swing.JLabel percentMsg;
+    private javax.swing.JLabel percentValor;
     private javax.swing.JButton pontVirgBtn;
     private javax.swing.JButton pontoBtn;
     private javax.swing.JButton qBtn;
@@ -1388,6 +1731,7 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JButton seisBtn;
     private javax.swing.JButton seteBtn;
     private javax.swing.JButton shiftBtn;
+    private javax.swing.JLabel simboloPercent;
     private javax.swing.JButton spaceBtn;
     private javax.swing.JButton tBtn;
     private javax.swing.JButton tabBtn;
