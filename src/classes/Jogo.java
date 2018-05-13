@@ -5,19 +5,17 @@
  */
 package classes;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author allan
  */
 public class Jogo {
-    private int erros;
-    private int acertos;
-    private float porcentagemAcerto;
-    private boolean inicio;
-    private int index;
-    private int tamanhoPangrama;
+    private int erros;//flag de erros
+    private int acertos;//flag de acertos
+    private float porcentagemAcerto;//flag da porcentagem de acerto
+    private boolean inicio;//flag de inicio do jogo
+    private int index;//flag de verificação para a progressão do pangrama
+    private int tamanhoPangrama;//Armazena o tamanho em caracteres do pangrama ativo
     
     public Jogo(){
         erros = 0;
@@ -28,26 +26,23 @@ public class Jogo {
         tamanhoPangrama = 0;
     }
     
-    public void inicioJogo(String pangrama){
+    public void inicioJogo(String pangrama){//inicia o game
         tamanhoPangrama = pangrama.length();
-        inicio = true;
+        inicio = true;//starta o jogo
     }
     
     public boolean contagem(String pangrama ,char letra){
-        
-        if(inicio){
+        //Realiza a verificação da tecla pressionada
+        if(inicio){//verfica se o jogo iniciou
             tamanhoPangrama = pangrama.length();
-            if(pangrama.charAt(index)==letra){
-                index++;
-                setAcertos();
-                setPercent();
-                if(index==tamanhoPangrama) {
-                    fimJogo();
-                }   
+            if(pangrama.charAt(index)==letra){//verifica se a letra do pangrama indexada e igual à letra pressionada
+                index++;//incrementa o index para proxima letra
+                setAcertos();//incrementa a quantidade de acertos
+                setPercent();//recalcula a porcentagem de acerto 
                 return true;
             }else{
-                setErros();
-                setPercent();
+                setErros();//incrementa a quantidade de erros
+                setPercent();//recalcula a porcentagem de acerto
                 return false;
             }
         }
@@ -55,35 +50,34 @@ public class Jogo {
         return false;
     }
     
-    public void setAcertos(){
+    public void setAcertos(){//incrementa a quantidade de acertos
         acertos++;
     }
     
-    public void setErros(){
+    public void setErros(){//incrementa a quantidade de erros
         erros++;
     }
     
-    public int getAcertos(){
+    public int getAcertos(){//captura a quantidade de acertos
         return acertos;
     }
     
-    public int getErros(){
+    public int getErros(){//captura a quantidade de erros
         return erros;
     }
     
     public void setPercent(){
-        //int total = getAcertos() - getErros();
-        //porcentagemAcerto = total / getAcertos();
+        //calcula a porcentagem de acertos
         float total = getAcertos() + getErros();
         porcentagemAcerto = (getAcertos()/total)*100;
         
     }
    
-    public float getPercent(){
+    public float getPercent(){//captura a porcentagem de acertos
         return porcentagemAcerto;
     }
     public boolean fimJogo(){
-       if(index == tamanhoPangrama) return true;
-       return false;
+        //verifica o se o jogo terminou
+               return index == tamanhoPangrama;//retorna true caso a expressão for verdade
     }
 }

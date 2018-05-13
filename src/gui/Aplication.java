@@ -14,7 +14,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author allan
+ * @author allan wanderley alves
+ * aps programação orientada a objeto - 2018.1
+ * ultima modificação 13/05/2018
  */
 public class Aplication extends javax.swing.JFrame {
 
@@ -22,26 +24,24 @@ public class Aplication extends javax.swing.JFrame {
      * Creates new form Aplication
      */
     
-    private Color cinza = Color.GRAY;
-    private JButton btnLast;
-    private Color capsAux;
-    private boolean capsFlag;
-    private int i;
-    private Pangramas pangramas;
-    private Jogo game;
-    private int flagTeclas;
-    private boolean flagAjuda;
+    private Color cinza = Color.GRAY; //Cor de fundo das teclas pressionadas
+    private JButton btnLast; //ponteiro para ultima tecla pressionada
+    private Color capsAux; //Auxiliar para restaurar a cor da ultima tecla pressionada
+    private boolean capsFlag; //flag para tratar o CAPSLOCK de maneira distinta das outras teclas
+    private Pangramas pangramas;// Objeto que carrega os pangramas no sistema
+    private Jogo game;//Objeto que retém as configurações do jogo
+    private int flagTeclas;//flag para detectar o backspace ao ser pressionado
+    private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
     
     public Aplication() {
         
        
         initComponents();
-        btnLast = null;
-        capsFlag = false;
-        pangramas = new Pangramas();
-        pangramaLabel.setText(pangramas.carregarPangrama());
-        flagTeclas = 0;
-        flagAjuda = false;
+        btnLast = null;//O ultimo botão que foi pressionado é NULL
+        capsFlag = false;//O Capslock vem desabilitado por padrão
+        pangramas = new Pangramas();//carregamento dos pangramas
+        flagTeclas = 0;//backspace nao esta pressionado por padrao
+        flagAjuda = false;//modo ajuda desabilitado
         
     }
     
@@ -168,23 +168,12 @@ public class Aplication extends javax.swing.JFrame {
                 textAreaCaretUpdate(evt);
             }
         });
-        textArea.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                textAreaCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                textAreaInputMethodTextChanged(evt);
-            }
-        });
         textArea.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textAreaKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textAreaKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textAreaKeyTyped(evt);
             }
         });
         jScrollPane1.setViewportView(textArea);
@@ -200,272 +189,122 @@ public class Aplication extends javax.swing.JFrame {
         tBtn.setText("T");
         tBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         tBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        tBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tBtnActionPerformed(evt);
-            }
-        });
 
         pontoBtn.setText(".");
         pontoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         pontoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        pontoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pontoBtnActionPerformed(evt);
-            }
-        });
 
         quatroBtn.setText("4");
         quatroBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         quatroBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        quatroBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quatroBtnActionPerformed(evt);
-            }
-        });
 
         seteBtn.setText("7");
         seteBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         seteBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        seteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seteBtnActionPerformed(evt);
-            }
-        });
 
         eBtn.setText("E");
         eBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         eBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        eBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eBtnActionPerformed(evt);
-            }
-        });
 
         downBtn.setText("↓");
         downBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         downBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        downBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                downBtnActionPerformed(evt);
-            }
-        });
 
         zeroBtn.setText("0");
         zeroBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         zeroBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        zeroBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                zeroBtnActionPerformed(evt);
-            }
-        });
 
         uBtn.setText("U");
         uBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         uBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        uBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uBtnActionPerformed(evt);
-            }
-        });
 
         aBtn.setText("A");
         aBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         aBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        aBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aBtnActionPerformed(evt);
-            }
-        });
 
         rBtn.setText("R");
         rBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         rBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        rBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rBtnActionPerformed(evt);
-            }
-        });
 
         oBtn.setText("O");
         oBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         oBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        oBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oBtnActionPerformed(evt);
-            }
-        });
 
         maisBtn.setText("+");
         maisBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         maisBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        maisBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maisBtnActionPerformed(evt);
-            }
-        });
 
         hBtn.setText("H");
         hBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         hBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        hBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hBtnActionPerformed(evt);
-            }
-        });
 
         upBtn.setText("↑");
         upBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         upBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        upBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                upBtnActionPerformed(evt);
-            }
-        });
 
         doisBtn.setText("2");
         doisBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         doisBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        doisBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doisBtnActionPerformed(evt);
-            }
-        });
 
         pontVirgBtn.setText(";");
         pontVirgBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         pontVirgBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        pontVirgBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pontVirgBtnActionPerformed(evt);
-            }
-        });
 
         tabBtn.setText("TAB");
         tabBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         tabBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        tabBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tabBtnActionPerformed(evt);
-            }
-        });
 
         seisBtn.setText("6");
         seisBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         seisBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        seisBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seisBtnActionPerformed(evt);
-            }
-        });
 
         concRightBtn.setText("]");
         concRightBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         concRightBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-        concRightBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                concRightBtnActionPerformed(evt);
-            }
-        });
 
         barraBtn.setText("\\");
             barraBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             barraBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            barraBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    barraBtnActionPerformed(evt);
-                }
-            });
 
             bBtn.setText("B");
             bBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             bBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            bBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    bBtnActionPerformed(evt);
-                }
-            });
 
             iBtn.setText("I");
             iBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             iBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            iBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    iBtnActionPerformed(evt);
-                }
-            });
 
             fBtn.setText("F");
             fBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             fBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            fBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    fBtnActionPerformed(evt);
-                }
-            });
 
             enterBtn.setText("ENTER");
             enterBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             enterBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            enterBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    enterBtnActionPerformed(evt);
-                }
-            });
 
             noveBtn.setText("9");
             noveBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             noveBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            noveBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    noveBtnActionPerformed(evt);
-                }
-            });
 
             gBtn.setText("G");
             gBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             gBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            gBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    gBtnActionPerformed(evt);
-                }
-            });
 
             zBtn.setText("Z");
             zBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             zBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            zBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    zBtnActionPerformed(evt);
-                }
-            });
 
             cBtn.setText("C");
             cBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             cBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            cBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    cBtnActionPerformed(evt);
-                }
-            });
 
             cdilhaBtn.setText("Ç");
             cdilhaBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             cdilhaBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            cdilhaBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    cdilhaBtnActionPerformed(evt);
-                }
-            });
 
             qBtn.setText("Q");
             qBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             qBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            qBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    qBtnActionPerformed(evt);
-                }
-            });
 
             umBtn.setText("1");
             umBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -474,211 +313,96 @@ public class Aplication extends javax.swing.JFrame {
             nBtn.setText("N");
             nBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             nBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            nBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    nBtnActionPerformed(evt);
-                }
-            });
 
             shiftBtn.setText("SHIFT");
             shiftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             shiftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            shiftBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    shiftBtnActionPerformed(evt);
-                }
-            });
 
             wBtn.setText("W");
             wBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             wBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            wBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    wBtnActionPerformed(evt);
-                }
-            });
 
             oitoBtn.setText("8");
             oitoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             oitoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            oitoBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    oitoBtnActionPerformed(evt);
-                }
-            });
 
             menosBtn.setText("-");
             menosBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             menosBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            menosBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    menosBtnActionPerformed(evt);
-                }
-            });
 
             lbtn.setText("L");
             lbtn.setMaximumSize(new java.awt.Dimension(48, 48));
             lbtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            lbtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    lbtnActionPerformed(evt);
-                }
-            });
 
             capsBtn.setText("CAPSLOCK");
             capsBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             capsBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            capsBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    capsBtnActionPerformed(evt);
-                }
-            });
 
             sBtn.setText("S");
             sBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             sBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            sBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    sBtnActionPerformed(evt);
-                }
-            });
 
             rightBtn.setText("→");
             rightBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             rightBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            rightBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    rightBtnActionPerformed(evt);
-                }
-            });
 
             leftBtn.setText("←");
             leftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             leftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            leftBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    leftBtnActionPerformed(evt);
-                }
-            });
 
             virgBtn.setText(",");
             virgBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             virgBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            virgBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    virgBtnActionPerformed(evt);
-                }
-            });
 
             kbtn.setText("K");
             kbtn.setMaximumSize(new java.awt.Dimension(48, 48));
             kbtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            kbtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    kbtnActionPerformed(evt);
-                }
-            });
 
             pBtn.setText("P");
             pBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             pBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            pBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    pBtnActionPerformed(evt);
-                }
-            });
 
             backspcBtn.setText("Backspace");
 
             xBtn.setText("X");
             xBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             xBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            xBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    xBtnActionPerformed(evt);
-                }
-            });
 
             jBtn.setText("J");
             jBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             jBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            jBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jBtnActionPerformed(evt);
-                }
-            });
 
             spaceBtn.setText("SPACE");
             spaceBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             spaceBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            spaceBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    spaceBtnActionPerformed(evt);
-                }
-            });
 
             concLeftBtn.setText("[");
             concLeftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             concLeftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            concLeftBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    concLeftBtnActionPerformed(evt);
-                }
-            });
 
             vBtn.setText("V");
             vBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             vBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            vBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    vBtnActionPerformed(evt);
-                }
-            });
 
             mBtn.setText("M");
             mBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             mBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            mBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    mBtnActionPerformed(evt);
-                }
-            });
 
             yBtn.setText("Y");
             yBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             yBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            yBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    yBtnActionPerformed(evt);
-                }
-            });
 
             dBtn.setText("D");
             dBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             dBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            dBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    dBtnActionPerformed(evt);
-                }
-            });
 
             tresBtn.setText("3");
             tresBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             tresBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            tresBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    tresBtnActionPerformed(evt);
-                }
-            });
 
             cincoBtn.setText("5");
             cincoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             cincoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-            cincoBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    cincoBtnActionPerformed(evt);
-                }
-            });
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
@@ -972,11 +696,6 @@ public class Aplication extends javax.swing.JFrame {
             barraMenu.add(menuOpcoes);
 
             menuAjuda.setText("Ajuda");
-            menuAjuda.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    menuAjudaActionPerformed(evt);
-                }
-            });
 
             itemMenuAjuda.setText("Ajuda");
             itemMenuAjuda.addActionListener(new java.awt.event.ActionListener() {
@@ -1007,13 +726,13 @@ public class Aplication extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(pangramaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblTitulo)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(75, 75, 75)))
+                                    .addGap(75, 75, 75))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(pangramaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(descricaoLabel)
                                 .addGroup(layout.createSequentialGroup()
@@ -1030,8 +749,7 @@ public class Aplication extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(simboloPercent)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                            .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGap(0, 0, Short.MAX_VALUE))
                 .addGroup(layout.createSequentialGroup()
                     .addGap(30, 30, 30)
@@ -1074,232 +792,21 @@ public class Aplication extends javax.swing.JFrame {
             setLocationRelativeTo(null);
         }// </editor-fold>//GEN-END:initComponents
 
-    private void doisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doisBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_doisBtnActionPerformed
-
-    private void tresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tresBtnActionPerformed
-
-    private void quatroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quatroBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_quatroBtnActionPerformed
-
-    private void cincoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cincoBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cincoBtnActionPerformed
-
-    private void seisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seisBtnActionPerformed
-
-    private void seteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seteBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seteBtnActionPerformed
-
-    private void oitoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oitoBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oitoBtnActionPerformed
-
-    private void noveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noveBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noveBtnActionPerformed
-
-    private void zeroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zeroBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_zeroBtnActionPerformed
-
-    private void menosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menosBtnActionPerformed
-
-    private void maisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maisBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maisBtnActionPerformed
-
-    private void concLeftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_concLeftBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_concLeftBtnActionPerformed
-
-    private void pBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pBtnActionPerformed
-
-    private void oBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oBtnActionPerformed
-
-    private void iBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iBtnActionPerformed
-
-    private void uBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_uBtnActionPerformed
-
-    private void tBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tBtnActionPerformed
-
-    private void yBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_yBtnActionPerformed
-
-    private void rBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rBtnActionPerformed
-
-    private void wBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wBtnActionPerformed
-
-    private void eBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eBtnActionPerformed
-
-    private void tabBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabBtnActionPerformed
-
-    private void qBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_qBtnActionPerformed
-
-    private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterBtnActionPerformed
-
-    private void capsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capsBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_capsBtnActionPerformed
-
-    private void fBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fBtnActionPerformed
-
-    private void aBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_aBtnActionPerformed
-
-    private void sBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sBtnActionPerformed
-
-    private void dBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dBtnActionPerformed
-
-    private void gBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gBtnActionPerformed
-
-    private void hBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hBtnActionPerformed
-
-    private void jBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnActionPerformed
-
-    private void kbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kbtnActionPerformed
-
-    private void lbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbtnActionPerformed
-
-    private void cdilhaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cdilhaBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cdilhaBtnActionPerformed
-
-    private void concRightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_concRightBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_concRightBtnActionPerformed
-
-    private void shiftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shiftBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_shiftBtnActionPerformed
-
-    private void barraBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barraBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_barraBtnActionPerformed
-
-    private void zBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_zBtnActionPerformed
-
-    private void xBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_xBtnActionPerformed
-
-    private void cBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cBtnActionPerformed
-
-    private void vBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vBtnActionPerformed
-
-    private void bBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bBtnActionPerformed
-
-    private void nBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nBtnActionPerformed
-
-    private void mBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mBtnActionPerformed
-
-    private void virgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_virgBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_virgBtnActionPerformed
-
-    private void pontoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pontoBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pontoBtnActionPerformed
-
-    private void pontVirgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pontVirgBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pontVirgBtnActionPerformed
-
-    private void spaceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spaceBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spaceBtnActionPerformed
-
-    private void upBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_upBtnActionPerformed
-
-    private void downBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_downBtnActionPerformed
-
-    private void leftBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_leftBtnActionPerformed
-
-    private void rightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rightBtnActionPerformed
-
     private void textAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyPressed
-        trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()));
-        switch (evt.getKeyCode()) {
+        trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()));//Troca o fundo das teclas
+        switch (evt.getKeyCode()) {//verifica se a tecla pressionada é o BACKSPACE
             case KeyEvent.VK_BACKSPACE:
-                flagTeclas = 1;
+                flagTeclas = 1;//ativa a flag caso positivo
                 break;
             default:
-                flagTeclas = 0;
+                flagTeclas = 0;//desativa a flag caso negativo
                 break;
         }
     }//GEN-LAST:event_textAreaKeyPressed
 
     private void textAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER||flagAjuda){
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER||flagAjuda){//Metodo que sai do modo ajuda para um novo jogo
+            //após o mesmo ter sido habilitado
             textArea.setEditable(true);
             modoAjuda.setText("");
             menuOpcoes.setEnabled(true);
@@ -1309,46 +816,43 @@ public class Aplication extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textAreaKeyReleased
 
-    private void textAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyTyped
-        
-    }//GEN-LAST:event_textAreaKeyTyped
-
     private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
-        i = JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza que deseja sair?", DISPOSE_ON_CLOSE);
-        if (i==0) {
+        //metodo que trata a finalização do programa
+        if (JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza que deseja sair?", DISPOSE_ON_CLOSE)==0) {
              System.exit(0);
         }
     }//GEN-LAST:event_menuItemSairActionPerformed
 
     private void pangramaInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaInglesActionPerformed
-        if(pangramas.alterarTipoPangrama(1)==-1){
-            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");
+        //metodo para alterar para pangramas em ingles
+        if(pangramas.alterarTipoPangrama(1)==-1){/*'alterarTipoPangrama(1)' metodo para alterar a linguagem do pangrama
+            parametro 1 define que a linguagem escolhida é o ingles.*/
+            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");/*caso o tipo de pangrama ja esteja definido como ingles
+            um aviso é emitido*/
         }else{
             carregarPangrama();
         }
     }//GEN-LAST:event_pangramaInglesActionPerformed
 
     private void pangramaPortuguesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaPortuguesActionPerformed
-        if(pangramas.alterarTipoPangrama(0)==-1){
-            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");
+        //metodo para alterar para pangramas em portugues
+        if(pangramas.alterarTipoPangrama(0)==-1){/*'alterarTipoPangrama(0)' metodo para alterar a linguagem do pangrama
+            parametro 0 define que a linguagem escolhida é o portugues.*/
+            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");/*caso o tipo de pangrama ja esteja definido como portugues
+            um aviso é emitido*/
         }else{
             carregarPangrama();
         }
     }//GEN-LAST:event_pangramaPortuguesActionPerformed
     private void gerarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPangramaActionPerformed
-        carregarPangrama();
+        carregarPangrama();//carrega um pangrama da mesma tipagem selecionada
     }//GEN-LAST:event_gerarPangramaActionPerformed
 
-    private void menuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjudaActionPerformed
-        
-       
-    }//GEN-LAST:event_menuAjudaActionPerformed
-
     private void menuNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoJogoActionPerformed
-        newGameStats();
+        newGameStats();//chama o metodo para carregar um novo jogo
         
     }//GEN-LAST:event_menuNovoJogoActionPerformed
-    private void newGameStats(){
+    private void newGameStats(){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
         game = new Jogo();
         game.inicioJogo(pangramaLabel.getText());
         textArea.setEnabled(true);
@@ -1360,44 +864,38 @@ public class Aplication extends javax.swing.JFrame {
         textArea.grabFocus();
         
     }
-    private void textAreaCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_textAreaCaretPositionChanged
-        
-    }//GEN-LAST:event_textAreaCaretPositionChanged
-
-    private void textAreaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_textAreaInputMethodTextChanged
-       
-    }//GEN-LAST:event_textAreaInputMethodTextChanged
-
     private void textAreaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textAreaCaretUpdate
-        if(!flagAjuda){
-            int tamanho = textArea.getText().length();
-            if(flagTeclas == 0){
-                if(game.contagem(pangramaLabel.getText(),textArea.getText().charAt(tamanho-1))){
-                    acertoValor.setText(Integer.toString(game.getAcertos())); 
+        if(!flagAjuda && textArea.isEnabled()){//Metodo para verificar a cada atualização do ponteiro na area de texto
+            //verifica se a flag de ajuda estiver desabilitada e se a area de texto estiver habilitada
+            int tamanho = textArea.getText().length();//captura o comprimento da frase dentro da area de texto
+            if(flagTeclas == 0){//verifica se o BACKSPACE foi pressionado
+                if(game.contagem(pangramaLabel.getText(),textArea.getText().charAt(tamanho-1))){//metodo para contar os acertos
+                    acertoValor.setText(Integer.toString(game.getAcertos())); //setar incremento de acerto na label
 
                 }else{
-                    erroValor.setText(Integer.toString(game.getErros()));
+                    erroValor.setText(Integer.toString(game.getErros()));//setar incremento de erro na label
                 }
-                percentValor.setText(String.format(Float.toString(game.getPercent()),"%.2f"));
+                percentValor.setText(String.format(Float.toString(game.getPercent()),"%.2f"));//seta a porcentagem de acerto
             }
-            if(game.fimJogo()){
+            if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
                 JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
-                        + percentValor.getText(), "Pangrama completo!", 1);
-                textArea.setEnabled(false);
+                        + percentValor.getText(), "Pangrama completo!", 1);//Desempenho final é mostrado
+                textArea.setEnabled(false);//Area de texto é desabilitada
 
             }
         }
     }//GEN-LAST:event_textAreaCaretUpdate
 
     private void itemMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAjudaActionPerformed
-        flagAjuda=true;
-        menuOpcoes.setEnabled(false);
-        menuAjuda.setEnabled(false);
-        modoAjuda.setText("MODO AJUDA");
+        //Metodo para habilitar o modo ajuda
+        flagAjuda=true;//flag modo ajuda é habilitado
+        menuOpcoes.setEnabled(false);//Menu de opções desabilitado
+        menuAjuda.setEnabled(false);//menu de ajuda desabilitado
+        modoAjuda.setText("MODO AJUDA");//Insere texto em uma LABEL ilustrando o modo ajuda
         if(!textArea.isEnabled()){
-            textArea.setEnabled(true);
+            textArea.setEnabled(true);//habilita a area de texto
         }
-        textArea.setEditable(false);
+        //seta o texto abaixo na area de texto
         textArea.setText("Este é um jogo treinamento de digitação.\n" +
 "Se consiste em digitar corretamente todo pangrama com o objetivo\n" +
 "de conseguir a maior porcentagem de aproveitamento de acertos possivel.\n" +
@@ -1410,19 +908,22 @@ public class Aplication extends javax.swing.JFrame {
 "Para resetar seu jogo Acesse a opção 'Novo jogo' ou pressione as teclas CTRL + N.\n" +
 "\n" +
 "Pressione Enter para sair do modo Ajuda.");
-        textArea.grabFocus();
+        textArea.setEditable(false);//Bloqueia edição na area de texto
+        textArea.grabFocus();//captura o foco para a area de texto
         
     }//GEN-LAST:event_itemMenuAjudaActionPerformed
     
     private void carregarPangrama(){
+        //metodo para carregar o pangrama ativo na memoria
         String pangrama;
         pangrama = pangramas.carregarPangrama();
-        while(pangramaLabel.getText().equals(pangrama)){
+        while(pangramaLabel.getText().equals(pangrama)){//Evita sobrescrição de um pangrama anterior pelo mesmo posterior
             pangrama = pangramas.carregarPangrama();
         }
-        pangramaLabel.setText(pangrama);
+        pangramaLabel.setText(pangrama);//seta o pangrama na label
     }
     private JButton verificaTeclaInput(char letra,int button){
+        //metodo para verificar o botão pressionado
         switch (button){
             case KeyEvent.VK_QUOTE:
                 return aspasBtn;
@@ -1599,28 +1100,29 @@ public class Aplication extends javax.swing.JFrame {
         return null;
     }
     private void trocaFundo(JButton btn){
+        //metodo para trocar a cor de fundo dos buttons
         if(btn == null)
             return;
         
-        if(btn == capsBtn){
-            if(capsFlag){
+        if(btn == capsBtn){//verifica se o botao pressionado foi o capslock
+            if(capsFlag){//Verfica se a flag do capslock esta ativa
                 capsFlag=false;
                 btn.setBackground(capsAux);
-            }else{
+            }else{//bloco para setar a cor de fundo durante a ativação do capslock
                 capsFlag = true;
                 capsAux = btn.getBackground(); 
                 btn.setBackground(cinza);
             }
             return;
         }
-        if(btnLast == null){
-            btnLast = btn;
-            btn.setBackground(cinza);
+        if(btnLast == null){//verifica se o btnLast é vazio
+            btnLast = btn;//seta o botao atual para o btnlast
+            btn.setBackground(cinza);//modifica a cor do botao pressionado
         }else{
             
-            btnLast.setBackground(btn.getBackground());
-            btnLast = btn;
-            btn.setBackground(cinza);
+            btnLast.setBackground(btn.getBackground());//retorna a cor para o default do button anterior
+            btnLast = btn;//o botao atual vira o btnLast
+            btn.setBackground(cinza);//seta a cor do btn atual para o cinza
         }
     }
     /**
