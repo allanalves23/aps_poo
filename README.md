@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-﻿# aps_poo
-
-Aps - Teclado virtual/treinamento de digitação
-
-Programação orientada a objeto
-
-
-
-=======
 # aps_poo
 Aps - Teclado virtual/treinamento de digitação
 Programação orientada a objeto
