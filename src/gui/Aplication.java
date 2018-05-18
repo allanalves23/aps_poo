@@ -121,7 +121,6 @@ public class Aplication extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
         modoAjuda = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         pangramaLabel = new javax.swing.JLabel();
@@ -620,8 +619,6 @@ public class Aplication extends javax.swing.JFrame {
             modoAjuda.setForeground(new java.awt.Color(255, 0, 0));
             modoAjuda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            jLabel1.setText("v1.1");
-
             lblTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
             lblTitulo.setText("Complete o pangrama!");
 
@@ -831,10 +828,6 @@ public class Aplication extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(58, 58, 58))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(jLabel1)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -850,9 +843,7 @@ public class Aplication extends javax.swing.JFrame {
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel1)
-                    .addGap(6, 6, 6))
+                    .addGap(26, 26, 26))
             );
 
             pack();
@@ -1309,7 +1300,6 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemMenuAjuda;
     private javax.swing.JButton jBtn;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
