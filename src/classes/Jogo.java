@@ -30,13 +30,16 @@ public class Jogo {
         tamanhoPangrama = pangrama.length();
         inicio = true;//starta o jogo
     }
+
+    public int getTamanhoPangrama() {
+        return tamanhoPangrama;
+    }
     
     public boolean contagem(String pangrama ,char letra){
         //Realiza a verificação da tecla pressionada
-        int ad=0;
         if(inicio){//verfica se o jogo iniciou
             tamanhoPangrama = pangrama.length();
-            if(pangrama.charAt(index)==letra){//verifica se a letra do pangrama indexada e igual à letra pressionada
+            if(pangrama.charAt(index)==letra){//verifica se a letra do pangrama indexada e igual à letra pressionada            
                 index++;//incrementa o index para proxima letra
                 setAcertos();//incrementa a quantidade de acertos
                 setPercent();//recalcula a porcentagem de acerto 
@@ -82,6 +85,6 @@ public class Jogo {
     }    
     public boolean fimJogo(){
         //verifica o se o jogo terminou
-            return index == tamanhoPangrama;//retorna true caso a expressão for verdade
+            return getAcertos() == tamanhoPangrama;//retorna true caso a expressão for verdade
     }
 }

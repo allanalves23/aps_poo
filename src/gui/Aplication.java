@@ -929,12 +929,19 @@ public class Aplication extends javax.swing.JFrame {
         newGameStats();//chama o metodo para carregar um novo jogo
         
     }//GEN-LAST:event_menuNovoJogoActionPerformed
+    private void mudaTextArea(){
+        textArea.setText("");
+    }
     private void newGameStats(){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
         game = new Jogo();
         game.inicioJogo(pangramaLabel.getText());
         textArea.setEnabled(true);
-        textArea.setText("");
         textArea.requestFocus();
+        try {
+            mudaTextArea();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         cleanScreen();
         carregarPangrama();
         
@@ -946,7 +953,6 @@ public class Aplication extends javax.swing.JFrame {
         acertoValor.setText("0");
     }
     private void textAreaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textAreaCaretUpdate
-        int option = 1;
         if(textArea.getText().length()==0){
             return;
         }else{
@@ -967,23 +973,24 @@ public class Aplication extends javax.swing.JFrame {
 
                 }else{
                     erroValor.setText(Integer.toString(game.getErros()));//setar incremento de erro na label
+                    
                 }
                 percentValor.setText(String.format(Float.toString(game.getPercent()),"%.2f"));//seta a porcentagem de acerto
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
-                option = JOptionPane.showConfirmDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
-                          + percentValor.getText()+"\nDeseja começar um novo pangrama?", "Pangrama completo!", JOptionPane.OK_CANCEL_OPTION);
+                JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
+                          + percentValor.getText()+"O jogo será reiniciado!", "Pangrama completo!",JOptionPane.OK_OPTION);
                  
-                
+           
+            newGameStats();
+
+            
                 
 //JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
 //                        + percentValor.getText(), "Pangrama completo!", 1);//Desempenho final é mostrado
                 
 
             }
-        }
-        if(option == 0){
-                    newGameStats();
         }
     }//GEN-LAST:event_textAreaCaretUpdate
 
