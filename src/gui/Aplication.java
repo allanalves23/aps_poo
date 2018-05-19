@@ -42,7 +42,6 @@ public class Aplication extends javax.swing.JFrame {
         pangramas = new Pangramas();//carregamento dos pangramas
         flagTeclas = 0;//backspace nao esta pressionado por padrao
         flagAjuda = false;//modo ajuda desabilitado
-        
     }
     
     /**
@@ -120,13 +119,11 @@ public class Aplication extends javax.swing.JFrame {
         cincoBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
-        modoAjuda = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
         pangramaLabel = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        descricaoLabel = new javax.swing.JLabel();
+        modoAjuda = new javax.swing.JLabel();
         newGameBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         acertosMsg = new javax.swing.JLabel();
         acertoValor = new javax.swing.JLabel();
@@ -135,6 +132,7 @@ public class Aplication extends javax.swing.JFrame {
         percentMsg = new javax.swing.JLabel();
         simboloPercent = new javax.swing.JLabel();
         percentValor = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         barraMenu = new javax.swing.JMenuBar();
         menuOpcoes = new javax.swing.JMenu();
         menuNovoJogo = new javax.swing.JMenuItem();
@@ -409,8 +407,9 @@ public class Aplication extends javax.swing.JFrame {
             jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(37, Short.MAX_VALUE)
+                    .addGap(25, 25, 25)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -452,7 +451,6 @@ public class Aplication extends javax.swing.JFrame {
                             .addGap(2, 2, 2)
                             .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(aspasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
@@ -531,12 +529,12 @@ public class Aplication extends javax.swing.JFrame {
                                 .addComponent(cdilhaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
                                 .addComponent(concRightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addContainerGap(37, Short.MAX_VALUE))
+                    .addGap(25, 25, 25))
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
+                    .addGap(10, 10, 10)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -612,42 +610,17 @@ public class Aplication extends javax.swing.JFrame {
                         .addComponent(downBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap())
+                    .addGap(25, 25, 25))
             );
 
-            modoAjuda.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-            modoAjuda.setForeground(new java.awt.Color(255, 0, 0));
-            modoAjuda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "COMPLETE O PANGRAMA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 12))); // NOI18N
 
-            lblTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-            lblTitulo.setText("Complete o pangrama!");
-
-            pangramaLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+            pangramaLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
             pangramaLabel.setText(" ");
 
-            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-            jPanel2.setLayout(jPanel2Layout);
-            jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pangramaLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
-                    .addContainerGap())
-            );
-            jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(lblTitulo)
-                    .addGap(18, 18, 18)
-                    .addComponent(pangramaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
-            );
-
-            descricaoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            descricaoLabel.setText("Duvidas? Acesse o menu ajuda para orientações");
+            modoAjuda.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+            modoAjuda.setForeground(new java.awt.Color(255, 0, 0));
+            modoAjuda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
             newGameBtn.setBackground(new java.awt.Color(0, 153, 255));
             newGameBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -659,7 +632,35 @@ public class Aplication extends javax.swing.JFrame {
                 }
             });
 
-            jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+            jPanel2.setLayout(jPanel2Layout);
+            jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(26, 26, 26)
+                    .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(31, 31, 31))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pangramaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
+            );
+            jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addComponent(pangramaLabel)
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(newGameBtn)
+                        .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+
+            jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Acesse o menu ajuda para orientações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 11))); // NOI18N
+            jPanel3.setToolTipText("");
 
             acertosMsg.setForeground(new java.awt.Color(0, 153, 204));
             acertosMsg.setText("Acertos");
@@ -721,7 +722,7 @@ public class Aplication extends javax.swing.JFrame {
                             .addComponent(erroValor)
                             .addComponent(acertoValor)
                             .addComponent(simboloPercent)))
-                    .addContainerGap())
+                    .addContainerGap(22, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -729,22 +730,16 @@ public class Aplication extends javax.swing.JFrame {
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(23, 23, 23)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(newGameBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(descricaoLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(25, Short.MAX_VALUE))
+                    .addGap(5, 5, 5)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(descricaoLabel)
-                    .addGap(18, 18, 18)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(18, 18, 18)
-                    .addComponent(newGameBtn))
+                    .addGap(20, 20, 20)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(23, Short.MAX_VALUE))
             );
 
             menuOpcoes.setText("Opções");
@@ -759,6 +754,7 @@ public class Aplication extends javax.swing.JFrame {
             menuOpcoes.add(menuNovoJogo);
 
             menuConfigPangrama.setText("Configurações Pangramas");
+            menuConfigPangrama.setEnabled(false);
 
             gerarPangrama.setText("Gerar outro pangrama");
             gerarPangrama.addActionListener(new java.awt.event.ActionListener() {
@@ -820,30 +816,26 @@ public class Aplication extends javax.swing.JFrame {
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(58, 58, 58))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(30, 30, 30)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26))
+                    .addContainerGap())
             );
 
             pack();
@@ -941,6 +933,9 @@ public class Aplication extends javax.swing.JFrame {
         textArea.setText(textArea.getText().replace(textArea.getText(), ""));
         cleanScreen();
         carregarPangrama();
+        if(!menuConfigPangrama.isEnabled()){
+            menuConfigPangrama.setEnabled(true);
+        }
         
     }
     
@@ -953,7 +948,9 @@ public class Aplication extends javax.swing.JFrame {
         if(textArea.getText().length()==0){
             return;
         }else{
-            newGameBtn.setVisible(true);
+            if(textArea.isEditable()){
+                newGameBtn.setVisible(true);
+            }
         }
         if(!flagAjuda && textArea.isEnabled()){//Metodo para verificar a cada atualização do ponteiro na area de texto
             //verifica se a flag de ajuda estiver desabilitada e se a area de texto estiver habilitada
@@ -972,13 +969,14 @@ public class Aplication extends javax.swing.JFrame {
                     erroValor.setText(Integer.toString(game.getErros()));//setar incremento de erro na label
                     
                 }
-                percentValor.setText(String.format(Float.toString(game.getPercent()),"%.2f"));//seta a porcentagem de acerto
+                percentValor.setText(String.format("%.2f",game.getPercent()));//seta a porcentagem de acerto
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
-                JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
-                          + percentValor.getText()+"\nComece um novo jogo!", "Pangrama completo!",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: "
+                          + percentValor.getText()+"%"+"\nComece um novo jogo!", "Pangrama completo!",JOptionPane.INFORMATION_MESSAGE);
                 
             textArea.setEnabled(false);
+            menuConfigPangrama.setEnabled(false);
             }
         }
     }//GEN-LAST:event_textAreaCaretUpdate
@@ -990,10 +988,8 @@ public class Aplication extends javax.swing.JFrame {
         menuConfigPangrama.setEnabled(false);//Menu de configuração de pangramas desabilitado
         menuAjuda.setEnabled(false);//menu de ajuda desabilitado
         modoAjuda.setText("MODO AJUDA");//Insere texto em uma LABEL ilustrando o modo ajuda
-        newGameBtn.setEnabled(false);
-        if(newGameBtn.isVisible()){
-            newGameBtn.setVisible(true);
-        }
+        cleanScreen();
+        pangramaLabel.setText("");
         if(!textArea.isEnabled()){
             textArea.setEnabled(true);//habilita a area de texto
         }
@@ -1012,7 +1008,8 @@ public class Aplication extends javax.swing.JFrame {
 "Pressione Enter para sair do modo Ajuda.");
         textArea.setEditable(false);//Bloqueia edição na area de texto
         textArea.grabFocus();//captura o foco para a area de texto
-        
+        newGameBtn.setVisible(false);
+        newGameBtn.setEnabled(false);
     }//GEN-LAST:event_itemMenuAjudaActionPerformed
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
@@ -1281,7 +1278,6 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JButton concLeftBtn;
     private javax.swing.JButton concRightBtn;
     private javax.swing.JButton dBtn;
-    private javax.swing.JLabel descricaoLabel;
     private javax.swing.JButton doisBtn;
     private javax.swing.JButton downBtn;
     private javax.swing.JButton eBtn;
@@ -1307,8 +1303,8 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton kbtn;
-    private javax.swing.JLabel lblTitulo;
     private javax.swing.JButton lbtn;
     private javax.swing.JButton leftBtn;
     private javax.swing.JButton mBtn;
