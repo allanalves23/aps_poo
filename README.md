@@ -2,8 +2,6 @@
 Aps - Teclado virtual/treinamento de digitação
 Programação orientada a objeto
 
-<<<<<<< HEAD
-
 ==== RELEASE NOTES ====
 aps_poo v1.1.1
 
@@ -16,6 +14,5 @@ aps_poo v1.1.1
 
 
 ![Soft](https://i.imgur.com/41aSRMK.png "soft")
-=======
-![Soft](https://i.imgur.com/GkKP3wO.png "soft")
->>>>>>> e3aa487a0640055df7bb8797e2790a1aaa169dff
+
+
