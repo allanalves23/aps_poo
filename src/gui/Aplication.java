@@ -884,35 +884,14 @@ public class Aplication extends javax.swing.JFrame {
 
     private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
         //metodo que trata a finalização do programa
-        if (JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza que deseja sair?", DISPOSE_ON_CLOSE)==0) {
+        if (JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza?", DISPOSE_ON_CLOSE,JOptionPane.WARNING_MESSAGE)==0) {
              System.exit(0);
         }
     }//GEN-LAST:event_menuItemSairActionPerformed
-
-    private void pangramaInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaInglesActionPerformed
-        //metodo para alterar para pangramas em ingles
-        if(pangramas.alterarTipoPangrama(1)==-1){/*'alterarTipoPangrama(1)' metodo para alterar a linguagem do pangrama
-            parametro 1 define que a linguagem escolhida é o ingles.*/
-            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");/*caso o tipo de pangrama ja esteja definido como ingles
-            um aviso é emitido*/
-        }else{
-            carregarPangrama();
-        }
-    }//GEN-LAST:event_pangramaInglesActionPerformed
-
-    private void pangramaPortuguesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaPortuguesActionPerformed
-        //metodo para alterar para pangramas em portugues
-        if(pangramas.alterarTipoPangrama(0)==-1){/*'alterarTipoPangrama(0)' metodo para alterar a linguagem do pangrama
-            parametro 0 define que a linguagem escolhida é o portugues.*/
-            JOptionPane.showMessageDialog(this, "Tipo de linguagem ja selecionado");/*caso o tipo de pangrama ja esteja definido como portugues
-            um aviso é emitido*/
-        }else{
-            carregarPangrama();
-        }
-    }//GEN-LAST:event_pangramaPortuguesActionPerformed
-    private void gerarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPangramaActionPerformed
+    
+    private void questionRestartGame(){
         if(textArea.getText().length()>0 || !acertoValor.getText().equals("0") || !erroValor.getText().equals("0")){
-            if(JOptionPane.showConfirmDialog(this, "Carregar um novo pangrama reiniciará o jogo", "Tem certeza?", JOptionPane.OK_CANCEL_OPTION)==0){
+            if(JOptionPane.showConfirmDialog(this, "Carregar um novo pangrama reiniciará o jogo", "Tem certeza?", JOptionPane.YES_NO_OPTION)==0){
                cleanScreen();
                newGameStats();//carrega um pangrama da mesma tipagem selecionada
             }        
@@ -920,6 +899,30 @@ public class Aplication extends javax.swing.JFrame {
             cleanScreen();
             carregarPangrama();
         }
+    }
+    private void pangramaInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaInglesActionPerformed
+        //metodo para alterar para pangramas em ingles
+        if(pangramas.alterarTipoPangrama(1)==-1){/*'alterarTipoPangrama(1)' metodo para alterar a linguagem do pangrama
+            parametro 1 define que a linguagem escolhida é o ingles.*/
+            JOptionPane.showMessageDialog(this, "Tipo de linguagem já selecionado","Impossível alterar",JOptionPane.OK_OPTION);/*caso o tipo de pangrama ja esteja definido como portugues
+            um aviso é emitido*/
+        }else{
+            questionRestartGame();
+        }
+    }//GEN-LAST:event_pangramaInglesActionPerformed
+
+    private void pangramaPortuguesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pangramaPortuguesActionPerformed
+        //metodo para alterar para pangramas em portugues
+        if(pangramas.alterarTipoPangrama(0)==-1){/*'alterarTipoPangrama(0)' metodo para alterar a linguagem do pangrama
+            parametro 0 define que a linguagem escolhida é o portugues.*/
+            JOptionPane.showMessageDialog(this, "Tipo de linguagem já selecionado","Impossível alterar",JOptionPane.OK_OPTION);/*caso o tipo de pangrama ja esteja definido como portugues
+            um aviso é emitido*/
+        }else{
+            questionRestartGame();
+        }
+    }//GEN-LAST:event_pangramaPortuguesActionPerformed
+    private void gerarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPangramaActionPerformed
+        questionRestartGame();
     }//GEN-LAST:event_gerarPangramaActionPerformed
 
     private void menuNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoJogoActionPerformed
@@ -929,19 +932,13 @@ public class Aplication extends javax.swing.JFrame {
         newGameStats();//chama o metodo para carregar um novo jogo
         
     }//GEN-LAST:event_menuNovoJogoActionPerformed
-    private void mudaTextArea(){
-        textArea.setText("");
-    }
+   
     private void newGameStats(){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
         game = new Jogo();
         game.inicioJogo(pangramaLabel.getText());
         textArea.setEnabled(true);
         textArea.requestFocus();
-        try {
-            mudaTextArea();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        textArea.setText(textArea.getText().replace(textArea.getText(), ""));
         cleanScreen();
         carregarPangrama();
         
@@ -968,7 +965,7 @@ public class Aplication extends javax.swing.JFrame {
                 tamanho = 0;
             }
             if(flagTeclas == 0){//verifica se o BACKSPACE foi pressionado
-                if(game.contagem(pangramaLabel.getText(),textArea.getText().charAt(tamanho-1))){//metodo para contar os acertos
+                if(game.contagem(pangramaLabel.getText(),textArea.getText().charAt(tamanho-1),textArea.getText())){//metodo para contar os acertos
                     acertoValor.setText(Integer.toString(game.getAcertos())); //setar incremento de acerto na label
 
                 }else{
@@ -979,17 +976,9 @@ public class Aplication extends javax.swing.JFrame {
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
                 JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
-                          + percentValor.getText()+"O jogo será reiniciado!", "Pangrama completo!",JOptionPane.OK_OPTION);
-                 
-           
-            newGameStats();
-
-            
+                          + percentValor.getText()+"\nComece um novo jogo!", "Pangrama completo!",JOptionPane.INFORMATION_MESSAGE);
                 
-//JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: %"
-//                        + percentValor.getText(), "Pangrama completo!", 1);//Desempenho final é mostrado
-                
-
+            textArea.setEnabled(false);
             }
         }
     }//GEN-LAST:event_textAreaCaretUpdate

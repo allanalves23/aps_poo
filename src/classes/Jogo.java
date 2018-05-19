@@ -16,7 +16,7 @@ public class Jogo {
     private boolean inicio;//flag de inicio do jogo
     private int index;//flag de verificação para a progressão do pangrama
     private int tamanhoPangrama;//Armazena o tamanho em caracteres do pangrama ativo
-
+    private boolean flagMonstra;
     public Jogo(){
         erros = 0;
         acertos = 0;
@@ -24,6 +24,7 @@ public class Jogo {
         inicio = false;
         index = 0; 
         tamanhoPangrama = 0;
+        flagMonstra= false;
     }
     
     public void inicioJogo(String pangrama){//inicia o game
@@ -35,23 +36,30 @@ public class Jogo {
         return tamanhoPangrama;
     }
     
-    public boolean contagem(String pangrama ,char letra){
+    public boolean contagem(String pangrama ,char letra, String fraseAtual){
         //Realiza a verificação da tecla pressionada
         if(inicio){//verfica se o jogo iniciou
             tamanhoPangrama = pangrama.length();
+            
+            
             if(pangrama.charAt(index)==letra){//verifica se a letra do pangrama indexada e igual à letra pressionada            
-                index++;//incrementa o index para proxima letra
-                setAcertos();//incrementa a quantidade de acertos
-                setPercent();//recalcula a porcentagem de acerto 
-                return true;
-            }else{
+                if(pangrama.contains(fraseAtual)){
+                    index++;//incrementa o index para proxima letra
+                    setAcertos();//incrementa a quantidade de acertos
+                    setPercent();//recalcula a porcentagem de acerto 
+                    return true;    
+                }else{
+                    setErros();
+                    setPercent();
+                    return false;
+                }
                 
-                //carregarLetrasErradas(letra);
-                //printArray();
+            }else{
                 setErros();//incrementa a quantidade de erros
                 setPercent();//recalcula a porcentagem de acerto
                 return false;
             }
+            
             
         }
 
@@ -85,6 +93,6 @@ public class Jogo {
     }    
     public boolean fimJogo(){
         //verifica o se o jogo terminou
-            return getAcertos() == tamanhoPangrama;//retorna true caso a expressão for verdade
+            return index==tamanhoPangrama;//retorna true caso a expressão for verdade
     }
 }
