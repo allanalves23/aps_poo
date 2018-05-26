@@ -32,7 +32,7 @@ public class Aplication extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    
+    private String version =  "1.2.1";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     public Aplication() {
         
        
@@ -144,6 +144,7 @@ public class Aplication extends javax.swing.JFrame {
         menuItemSair = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemMenuAjuda = new javax.swing.JMenuItem();
+        itemMenuSobre = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
 
@@ -807,6 +808,14 @@ public class Aplication extends javax.swing.JFrame {
             });
             menuAjuda.add(itemMenuAjuda);
 
+            itemMenuSobre.setText("Sobre");
+            itemMenuSobre.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    itemMenuSobreActionPerformed(evt);
+                }
+            });
+            menuAjuda.add(itemMenuSobre);
+
             barraMenu.add(menuAjuda);
 
             setJMenuBar(barraMenu);
@@ -846,6 +855,15 @@ public class Aplication extends javax.swing.JFrame {
         switch (evt.getKeyCode()) {//verifica se a tecla pressionada é o BACKSPACE
             case KeyEvent.VK_BACKSPACE:
                 flagTeclas = 1;//ativa a flag caso positivo
+                break;
+            case KeyEvent.VK_CAPS_LOCK:
+                if(capsFlag){
+                    capsBtn.setBackground(padrao);
+                    capsFlag = false;
+                }else{
+                    capsBtn.setBackground(cinza);
+                    capsFlag = true;
+                }
                 break;
             default:
                 flagTeclas = 0;//desativa a flag caso negativo
@@ -1018,6 +1036,11 @@ public class Aplication extends javax.swing.JFrame {
         }
         newGameBtn.setVisible(false);
     }//GEN-LAST:event_newGameBtnActionPerformed
+
+    private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
+        JOptionPane.showMessageDialog(this, "Versão "+version+"\n\nAtividade pratica supervisionada de\n"
+                + "programação orientada a objetos\n\nFeito por: Allan Wanderley Alves", "aps_poo", JOptionPane.OK_OPTION);
+    }//GEN-LAST:event_itemMenuSobreActionPerformed
     
     private void carregarPangrama(){
         //metodo para carregar o pangrama ativo na memoria
@@ -1040,8 +1063,6 @@ public class Aplication extends javax.swing.JFrame {
                 return tabBtn;
             case KeyEvent.VK_ENTER:
                 return enterBtn;
-            case KeyEvent.VK_CAPS_LOCK:
-                return capsBtn;
             case KeyEvent.VK_SHIFT:
                 return shiftBtn;
             case KeyEvent.VK_BACK_SLASH:
@@ -1211,18 +1232,7 @@ public class Aplication extends javax.swing.JFrame {
         //1 para retornar a cor padrao
         if(btn == null)
             return;
-        
-        if(btn == capsBtn){//verifica se o botao pressionado foi o capslock
-            if(capsFlag){//Verfica se a flag do capslock esta ativa
-                capsFlag=false;
-                btn.setBackground(capsAux);
-            }else{//bloco para setar a cor de fundo durante a ativação do capslock
-                capsFlag = true;
-                capsAux = btn.getBackground(); 
-                btn.setBackground(cinza);
-            }
-            return;
-        }
+
         if(btnLast == null ){//verifica se o btnLast é vazio
             btnLast = btn;//seta o botao atual para o btnlast
         }
@@ -1290,6 +1300,7 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JButton hBtn;
     private javax.swing.JButton iBtn;
     private javax.swing.JMenuItem itemMenuAjuda;
+    private javax.swing.JMenuItem itemMenuSobre;
     private javax.swing.JButton jBtn;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu2;

@@ -5,11 +5,7 @@ Programação orientada a objeto
 ==== RELEASE NOTES ====
 aps_poo v1.2
 
-- Fixado valor formatado para porcentagem de acerto
-- Novo layout implementado
-- Pangramas em português adicionados
-- Pangramas em inglês adicionados
-- Bug fixado onde era apresentado o button Novo jogo no menu ajuda.
+.1- Fixado bug do botão CAPSLOCK onde o mesmo não ficava pressionado (créditos ao Joakim Texeira por encontrá-lo https://github.com/PerJoakim) - Adicionado um item menu 'Sobre' ao pai 'Ajuda' apenas contendo a versão do sistema, desenvolvedor e o proposito do software
 
 ========================
 
