@@ -7,7 +7,9 @@ package classes;
 
 /**
  *
- * @author allan
+ * @author allan wanderley alves
+ * aps programação orientada a objeto - 2018.1
+ * ultima modificação 03/06/2018
  */
 public class Jogo {
     private int erros;//flag de erros

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import classes.Jogo;
@@ -16,9 +11,9 @@ import javax.swing.JOptionPane;
  *
  * @author allan wanderley alves
  * aps programação orientada a objeto - 2018.1
- * ultima modificação 13/05/2018
+ * ultima modificação 03/06/2018
  */
-public class Aplication extends javax.swing.JFrame {
+public class AplicationPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form Aplication
@@ -26,14 +21,14 @@ public class Aplication extends javax.swing.JFrame {
     private Color padrao;//Cor de fundo padrao para as teclas não pressionadas
     private Color cinza = Color.GRAY; //Cor de fundo das teclas pressionadas
     private JButton btnLast; //ponteiro para ultima tecla pressionada
-    private Color capsAux; //Auxiliar para restaurar a cor da ultima tecla pressionada
     private boolean capsFlag; //flag para tratar o CAPSLOCK de maneira distinta das outras teclas
     private Pangramas pangramas;// Objeto que carrega os pangramas no sistema
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.1";//Variavel para associar a versão do programa dentro do botão 'Sobre'
-    public Aplication() {
+    private String version =  "1.2.2";//Variavel para associar a versão do programa dentro do botão 'Sobre'
+    private static AplicationPangramas telaViewPangramas;
+    public AplicationPrincipal() {
         
        
         initComponents();
@@ -42,6 +37,7 @@ public class Aplication extends javax.swing.JFrame {
         pangramas = new Pangramas();//carregamento dos pangramas
         flagTeclas = 0;//backspace nao esta pressionado por padrao
         flagAjuda = false;//modo ajuda desabilitado
+        telaViewPangramas=null;
     }
     
     /**
@@ -141,6 +137,7 @@ public class Aplication extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         pangramaIngles = new javax.swing.JMenuItem();
         pangramaPortugues = new javax.swing.JMenuItem();
+        visualizarPangramas = new javax.swing.JMenuItem();
         menuItemSair = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemMenuAjuda = new javax.swing.JMenuItem();
@@ -787,6 +784,14 @@ public class Aplication extends javax.swing.JFrame {
 
             menuOpcoes.add(menuConfigPangrama);
 
+            visualizarPangramas.setText("Visualizar Todos os pangramas");
+            visualizarPangramas.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    visualizarPangramasActionPerformed(evt);
+                }
+            });
+            menuOpcoes.add(visualizarPangramas);
+
             menuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
             menuItemSair.setText("Sair");
             menuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -1041,6 +1046,14 @@ public class Aplication extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Versão "+version+"\n\nAtividade pratica supervisionada de\n"
                 + "programação orientada a objetos\n\nFeito por: Allan Wanderley Alves", "aps_poo", JOptionPane.OK_OPTION);
     }//GEN-LAST:event_itemMenuSobreActionPerformed
+
+    private void visualizarPangramasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarPangramasActionPerformed
+        if(telaViewPangramas==null){
+            telaViewPangramas=new AplicationPangramas(this,true);
+        }
+        telaViewPangramas.setVisible(true);
+        telaViewPangramas.setAlwaysOnTop(true);
+    }//GEN-LAST:event_visualizarPangramasActionPerformed
     
     private void carregarPangrama(){
         //metodo para carregar o pangrama ativo na memoria
@@ -1260,15 +1273,16 @@ public class Aplication extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Aplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AplicationPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Aplication().setVisible(true);
+            new AplicationPrincipal().setVisible(true);
         });
     }
 
@@ -1359,6 +1373,7 @@ public class Aplication extends javax.swing.JFrame {
     private javax.swing.JButton upBtn;
     private javax.swing.JButton vBtn;
     private javax.swing.JButton virgBtn;
+    private javax.swing.JMenuItem visualizarPangramas;
     private javax.swing.JButton wBtn;
     private javax.swing.JButton xBtn;
     private javax.swing.JButton yBtn;
