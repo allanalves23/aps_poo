@@ -39,8 +39,7 @@ public class Pangramas {
         "Six plump boys guzzled cheap raw vodka quite joyfully",
         "Sixty zippers were quickly picked from the woven jute bag"};//Pangramas em ingles
     private boolean tipoPangrama = false;//flag do tipo de pangrama : false = Portugues | true = Ingles
-    
-    
+   
     public String[] listarPangramas(int tipo){
          if(tipo == 1){
              return pangramaPt;

@@ -18,7 +18,13 @@ public class Jogo {
     private boolean inicio;//flag de inicio do jogo
     private int index;//flag de verificação para a progressão do pangrama
     private int tamanhoPangrama;//Armazena o tamanho em caracteres do pangrama ativo
-    private boolean flagMonstra;
+    private String pangramaAtual;
+    private int reset;
+
+    public String getPangramaAtual() {
+        return pangramaAtual;
+    }
+    
     public Jogo(){
         erros = 0;
         acertos = 0;
@@ -26,14 +32,27 @@ public class Jogo {
         inicio = false;
         index = 0; 
         tamanhoPangrama = 0;
-        flagMonstra= false;
+        pangramaAtual = "";
     }
     
     public void inicioJogo(String pangrama){//inicia o game
         tamanhoPangrama = pangrama.length();
+        pangramaAtual = pangrama;
         inicio = true;//starta o jogo
     }
-
+    
+    public void resetStatus(){
+        if(reset ==0){
+            reset = 1;
+        }else{
+            reset = 0;
+        }
+    }
+    
+    public String selecionarPangrama(){
+       return pangramaAtual;
+    }   
+    
     public int getTamanhoPangrama() {
         return tamanhoPangrama;
     }

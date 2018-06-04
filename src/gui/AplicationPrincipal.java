@@ -26,6 +26,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private String version =  "1.2.3";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private static AplicationPangramas telaViewPangramas;
     private static AplicationSobre telaViewSobre;
+    private static final int VIEW = 0;//para acionar a tela de visualização dos pangramas em modo view
+    private static final int SELECT = 1;//para acionar a tela de visualização dos pangramas em modo seleção
+    
+    
     public AplicationPrincipal() {
         
        
@@ -126,10 +130,11 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         menuOpcoes = new javax.swing.JMenu();
         menuNovoJogo = new javax.swing.JMenuItem();
         menuConfigPangrama = new javax.swing.JMenu();
-        gerarPangrama = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         pangramaIngles = new javax.swing.JMenuItem();
         pangramaPortugues = new javax.swing.JMenuItem();
+        gerarPangrama = new javax.swing.JMenuItem();
+        selecionarPangrama = new javax.swing.JMenuItem();
         visualizarPangramas = new javax.swing.JMenuItem();
         menuItemSair = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
@@ -629,10 +634,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26)
+                    .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(87, 87, 87)
                     .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(31, 31, 31))
+                    .addGap(103, 103, 103))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(pangramaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -647,7 +652,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(newGameBtn)
                         .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(25, Short.MAX_VALUE))
             );
 
             jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Acesse o menu ajuda para orientações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 11))); // NOI18N
@@ -745,17 +750,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             menuOpcoes.add(menuNovoJogo);
 
             menuConfigPangrama.setText("Configurações Pangramas");
-            menuConfigPangrama.setEnabled(false);
-
-            gerarPangrama.setText("Gerar outro pangrama");
-            gerarPangrama.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    gerarPangramaActionPerformed(evt);
-                }
-            });
-            menuConfigPangrama.add(gerarPangrama);
 
             jMenu3.setText("Linguagem Pangrama");
+            jMenu3.setEnabled(false);
 
             pangramaIngles.setText("Inglês");
             pangramaIngles.addActionListener(new java.awt.event.ActionListener() {
@@ -774,6 +771,23 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             jMenu3.add(pangramaPortugues);
 
             menuConfigPangrama.add(jMenu3);
+
+            gerarPangrama.setText("Gerar pangrama aleatorio");
+            gerarPangrama.setEnabled(false);
+            gerarPangrama.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    gerarPangramaActionPerformed(evt);
+                }
+            });
+            menuConfigPangrama.add(gerarPangrama);
+
+            selecionarPangrama.setText("Selecionar Pangrama");
+            selecionarPangrama.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selecionarPangramaActionPerformed(evt);
+                }
+            });
+            menuConfigPangrama.add(selecionarPangrama);
 
             menuOpcoes.add(menuConfigPangrama);
 
@@ -884,7 +898,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             if(newGameBtn.isVisible()){
                 newGameBtn.setVisible(false);
             }
-            newGameStats();
+            newGameStatsRandom();
         }
         
          trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()),1);//Troca o fundo das teclas
@@ -901,7 +915,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         if(textArea.getText().length()>0 || !acertoValor.getText().equals("0") || !erroValor.getText().equals("0")){
             if(JOptionPane.showConfirmDialog(this, "Carregar um novo pangrama reiniciará o jogo", "Tem certeza?", JOptionPane.YES_NO_OPTION)==0){
                cleanScreen();
-               newGameStats();//carrega um pangrama da mesma tipagem selecionada
+               newGameStatsRandom();//carrega um pangrama da mesma tipagem selecionada
             }        
         }else{
             cleanScreen();
@@ -937,12 +951,13 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         if(newGameBtn.isVisible()){
             newGameBtn.setVisible(false);
         }
-        newGameStats();//chama o metodo para carregar um novo jogo
+        newGameStatsRandom();//chama o metodo para carregar um novo jogo
         
     }//GEN-LAST:event_menuNovoJogoActionPerformed
    
-    private void newGameStats(){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
+    private void newGameStatsRandom(){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
         game = new Jogo();
+        pangramaLabel.setText(pangramas.carregarPangrama());
         game.inicioJogo(pangramaLabel.getText());
         textArea.setEnabled(true);
         textArea.requestFocus();
@@ -952,6 +967,19 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         if(!menuConfigPangrama.isEnabled()){
             menuConfigPangrama.setEnabled(true);
         }
+        
+    }
+    
+    public void newGameStatsPrefedefined(){
+        
+        System.out.println(AplicationPangramas.pangramaSelecionado);
+        pangramaLabel.setText(AplicationPangramas.pangramaSelecionado);
+        game = new Jogo();
+        game.inicioJogo(pangramaLabel.getText());
+        textArea.setEnabled(true);
+        textArea.requestFocus();
+        textArea.setText(textArea.getText().replace(textArea.getText(), ""));
+        cleanScreen();
         
     }
     
@@ -1029,10 +1057,14 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuAjudaActionPerformed
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
-        if(textArea.getText().length()>0){
-            newGameStats();
+        System.out.println(AplicationPangramas.resetGame);
+        if(AplicationPangramas.resetGame==1){
+            newGameStatsPrefedefined();
+            AplicationPangramas.resetGame=0;
+        }else{
+            newGameStatsRandom();
         }
-        newGameBtn.setVisible(false);
+        newGameBtn.setVisible(false); 
     }//GEN-LAST:event_newGameBtnActionPerformed
 
     private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
@@ -1045,11 +1077,22 @@ public class AplicationPrincipal extends javax.swing.JFrame {
 
     private void visualizarPangramasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarPangramasActionPerformed
         if(telaViewPangramas==null){
-            telaViewPangramas=new AplicationPangramas(this,true);
+            telaViewPangramas=new AplicationPangramas(this,true,VIEW);
         }
         telaViewPangramas.setVisible(true);
         telaViewPangramas.setAlwaysOnTop(true);
     }//GEN-LAST:event_visualizarPangramasActionPerformed
+
+    private void selecionarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarPangramaActionPerformed
+        
+        if(telaViewPangramas==null){
+            telaViewPangramas=new AplicationPangramas(this,true,SELECT);
+        }
+        telaViewPangramas.setVisible(true);
+        telaViewPangramas.setAlwaysOnTop(true);
+        newGameBtn.setVisible(true);
+ 
+    }//GEN-LAST:event_selecionarPangramaActionPerformed
     
     private void carregarPangrama(){
         //metodo para carregar o pangrama ativo na memoria
@@ -1356,6 +1399,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton rightBtn;
     private javax.swing.JButton sBtn;
     private javax.swing.JButton seisBtn;
+    private javax.swing.JMenuItem selecionarPangrama;
     private javax.swing.JButton seteBtn;
     private javax.swing.JButton shiftBtn;
     private javax.swing.JLabel simboloPercent;
