@@ -16,16 +16,16 @@ public class AplicationPangramas extends javax.swing.JDialog {
     
     private Pangramas pangramas;
     DefaultTableModel model;
-    private int atividade;
     public static String pangramaSelecionado;
     public static int resetGame;
-      
-    public AplicationPangramas(java.awt.Frame parent, boolean modal,int data) {
+
+       
+    public AplicationPangramas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        btnSelectPangrama.setVisible(true);
         pangramas = new Pangramas();
         model = (DefaultTableModel) tabela.getModel();
-        atividade=data;
         resetGame = 0;
     }
 
@@ -41,16 +41,17 @@ public class AplicationPangramas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         btnSelectPangrama = new javax.swing.JButton();
+        btnSelectPangrama.setVisible(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Visualização Pangramas");
+        setTitle("Pangramas do sistema");
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setIconImage(null);
         setMaximumSize(new java.awt.Dimension(240, 480));
         setMinimumSize(new java.awt.Dimension(240, 480));
         setType(java.awt.Window.Type.UTILITY);
 
-        jLabel1.setText("Selecione uma linguagem");
+        jLabel1.setText("Linguagem dos pangramas");
 
         btnGroupPangramas.add(pangramaPortugues);
         pangramaPortugues.setText("Português");
@@ -146,11 +147,13 @@ public class AplicationPangramas extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSelectPangrama))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSelectPangrama, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +162,9 @@ public class AplicationPangramas extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnSelectPangrama)
-                .addGap(27, 27, 27))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -196,21 +199,25 @@ public class AplicationPangramas extends javax.swing.JDialog {
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void btnSelectPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectPangramaActionPerformed
-       if(atividade==1){
-            int n = JOptionPane.showConfirmDialog(this, "O próximo pangrama será o escolhido", "Tem certeza?", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE);
-            if(n==0){
-                pangramaSelecionado = (String) tabela.getValueAt(tabela.getSelectedRow(), 1);
-                resetGame=1;
-                JOptionPane.showMessageDialog(this, "Pangrama confirmado com sucesso\n Clique em Novo jogo para iniciar a rodada",
-                        "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                this.setVisible(false);
-            }else{
-                resetGame=0;
-            }
+        int n = JOptionPane.showConfirmDialog(this, "O próximo jogo será com o pangrama definido", "Tem certeza?", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if(n==0){
+            pangramaSelecionado = (String) tabela.getValueAt(tabela.getSelectedRow(), 1);
+            resetGame=1;
+            JOptionPane.showMessageDialog(this, "Pangrama confirmado com sucesso!\nInicie um Novo jogo para aplicar as mudanças",
+                    "Pangrama alterado com êxito!", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btnSelectPangramaActionPerformed
-     
+    public void load(int n){
+        btnGroupPangramas.clearSelection();
+        model.setNumRows(0);
+        if(n==1){
+            btnSelectPangrama.setVisible(true);
+        }else{
+            btnSelectPangrama.setVisible(false);
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroupPangramas;

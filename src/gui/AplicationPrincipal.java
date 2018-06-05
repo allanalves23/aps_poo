@@ -26,8 +26,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private String version =  "1.2.3";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private static AplicationPangramas telaViewPangramas;
     private static AplicationSobre telaViewSobre;
-    private static final int VIEW = 0;//para acionar a tela de visualização dos pangramas em modo view
-    private static final int SELECT = 1;//para acionar a tela de visualização dos pangramas em modo seleção
     
     
     public AplicationPrincipal() {
@@ -114,9 +112,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         textArea = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         pangramaLabel = new javax.swing.JLabel();
-        modoAjuda = new javax.swing.JLabel();
         newGameBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         acertosMsg = new javax.swing.JLabel();
         acertoValor = new javax.swing.JLabel();
@@ -125,17 +123,27 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         percentMsg = new javax.swing.JLabel();
         simboloPercent = new javax.swing.JLabel();
         percentValor = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        acertosMsgLast = new javax.swing.JLabel();
+        acertoValorLast = new javax.swing.JLabel();
+        errosMsgLast = new javax.swing.JLabel();
+        erroValorLast = new javax.swing.JLabel();
+        percentMsgLast = new javax.swing.JLabel();
+        simboloPercentLast = new javax.swing.JLabel();
+        percentValorLast = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        lblHelp = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
         menuOpcoes = new javax.swing.JMenu();
         menuNovoJogo = new javax.swing.JMenuItem();
         menuConfigPangrama = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        itemMenuLingPangrama = new javax.swing.JMenu();
         pangramaIngles = new javax.swing.JMenuItem();
         pangramaPortugues = new javax.swing.JMenuItem();
-        gerarPangrama = new javax.swing.JMenuItem();
+        itemMenuGerarPang = new javax.swing.JMenuItem();
         selecionarPangrama = new javax.swing.JMenuItem();
         visualizarPangramas = new javax.swing.JMenuItem();
+        itemMenuPause = new javax.swing.JMenuItem();
         menuItemSair = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemMenuAjuda = new javax.swing.JMenuItem();
@@ -614,10 +622,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             pangramaLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
             pangramaLabel.setText(" ");
 
-            modoAjuda.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-            modoAjuda.setForeground(new java.awt.Color(255, 0, 0));
-            modoAjuda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
             newGameBtn.setBackground(new java.awt.Color(0, 153, 255));
             newGameBtn.setForeground(new java.awt.Color(255, 255, 255));
             newGameBtn.setText("Novo Jogo!");
@@ -635,9 +639,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(87, 87, 87)
-                    .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(103, 103, 103))
+                    .addGap(339, 339, 339))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(pangramaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -649,14 +651,14 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     .addGap(30, 30, 30)
                     .addComponent(pangramaLabel)
                     .addGap(18, 18, 18)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(newGameBtn)
-                        .addComponent(modoAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(newGameBtn)
+                    .addContainerGap(57, Short.MAX_VALUE))
             );
 
             jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Acesse o menu ajuda para orientações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 11))); // NOI18N
             jPanel3.setToolTipText("");
+
+            jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
             acertosMsg.setForeground(new java.awt.Color(0, 153, 204));
             acertosMsg.setText("Acertos");
@@ -721,22 +723,95 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     .addContainerGap(22, Short.MAX_VALUE))
             );
 
+            jTabbedPane1.addTab("Resultado atual", jPanel4);
+
+            jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+            acertosMsgLast.setForeground(new java.awt.Color(0, 153, 204));
+            acertosMsgLast.setText("Acertos");
+
+            acertoValorLast.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            acertoValorLast.setText("0");
+
+            errosMsgLast.setForeground(new java.awt.Color(255, 0, 0));
+            errosMsgLast.setText("Erros");
+
+            erroValorLast.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            erroValorLast.setText("0");
+
+            percentMsgLast.setForeground(new java.awt.Color(0, 102, 0));
+            percentMsgLast.setText("Porcentagem");
+
+            simboloPercentLast.setText("%");
+
+            percentValorLast.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            percentValorLast.setText("0");
+
+            javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+            jPanel5.setLayout(jPanel5Layout);
+            jPanel5Layout.setHorizontalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(erroValorLast, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(errosMsgLast, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGap(50, 50, 50)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(acertosMsgLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(acertoValorLast, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(48, 48, 48)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(percentMsgLast)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(simboloPercentLast)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(percentValorLast, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap())
+            );
+            jPanel5Layout.setVerticalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(percentMsgLast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(errosMsgLast)
+                                .addComponent(acertosMsgLast))
+                            .addGap(2, 2, 2)))
+                    .addGap(6, 6, 6)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(percentValorLast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(erroValorLast)
+                            .addComponent(acertoValorLast)
+                            .addComponent(simboloPercentLast)))
+                    .addContainerGap(22, Short.MAX_VALUE))
+            );
+
+            jTabbedPane1.addTab("Ultimo resultado", jPanel5);
+
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(5, 5, 5)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(23, Short.MAX_VALUE))
+                    .addContainerGap()
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
+
+            lblHelp.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+            lblHelp.setForeground(new java.awt.Color(255, 0, 0));
+            lblHelp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
             menuOpcoes.setText("Opções");
 
@@ -751,8 +826,8 @@ public class AplicationPrincipal extends javax.swing.JFrame {
 
             menuConfigPangrama.setText("Configurações Pangramas");
 
-            jMenu3.setText("Linguagem Pangrama");
-            jMenu3.setEnabled(false);
+            itemMenuLingPangrama.setText("Linguagem Pangrama");
+            itemMenuLingPangrama.setEnabled(false);
 
             pangramaIngles.setText("Inglês");
             pangramaIngles.addActionListener(new java.awt.event.ActionListener() {
@@ -760,7 +835,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     pangramaInglesActionPerformed(evt);
                 }
             });
-            jMenu3.add(pangramaIngles);
+            itemMenuLingPangrama.add(pangramaIngles);
 
             pangramaPortugues.setText("Português");
             pangramaPortugues.addActionListener(new java.awt.event.ActionListener() {
@@ -768,18 +843,18 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     pangramaPortuguesActionPerformed(evt);
                 }
             });
-            jMenu3.add(pangramaPortugues);
+            itemMenuLingPangrama.add(pangramaPortugues);
 
-            menuConfigPangrama.add(jMenu3);
+            menuConfigPangrama.add(itemMenuLingPangrama);
 
-            gerarPangrama.setText("Gerar pangrama aleatorio");
-            gerarPangrama.setEnabled(false);
-            gerarPangrama.addActionListener(new java.awt.event.ActionListener() {
+            itemMenuGerarPang.setText("Gerar pangrama aleatorio");
+            itemMenuGerarPang.setEnabled(false);
+            itemMenuGerarPang.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    gerarPangramaActionPerformed(evt);
+                    itemMenuGerarPangActionPerformed(evt);
                 }
             });
-            menuConfigPangrama.add(gerarPangrama);
+            menuConfigPangrama.add(itemMenuGerarPang);
 
             selecionarPangrama.setText("Selecionar Pangrama");
             selecionarPangrama.addActionListener(new java.awt.event.ActionListener() {
@@ -798,6 +873,16 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 }
             });
             menuOpcoes.add(visualizarPangramas);
+
+            itemMenuPause.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+            itemMenuPause.setText("Pausar Jogo");
+            itemMenuPause.setEnabled(false);
+            itemMenuPause.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    itemMenuPauseActionPerformed(evt);
+                }
+            });
+            menuOpcoes.add(itemMenuPause);
 
             menuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
             menuItemSair.setText("Sair");
@@ -844,11 +929,17 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(314, 314, 314))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
+                    .addContainerGap()
+                    .addComponent(lblHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -889,7 +980,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER&&flagAjuda){//Metodo que sai do modo ajuda para um novo jogo
             //após o mesmo ter sido habilitado
             textArea.setEditable(true);
-            modoAjuda.setText("");
+            lblHelp.setText("");
             menuConfigPangrama.setEnabled(true);
             menuNovoJogo.setEnabled(true);
             menuAjuda.setEnabled(true);
@@ -943,15 +1034,24 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             questionRestartGame();
         }
     }//GEN-LAST:event_pangramaPortuguesActionPerformed
-    private void gerarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPangramaActionPerformed
+    private void itemMenuGerarPangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerarPangActionPerformed
         questionRestartGame();
-    }//GEN-LAST:event_gerarPangramaActionPerformed
+    }//GEN-LAST:event_itemMenuGerarPangActionPerformed
 
     private void menuNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoJogoActionPerformed
+        if(textArea.isEnabled()||lblHelp.getText().length()>0){
+            lblHelp.setText("");
+        }
         if(newGameBtn.isVisible()){
             newGameBtn.setVisible(false);
         }
-        newGameStatsRandom();//chama o metodo para carregar um novo jogo
+        if(AplicationPangramas.resetGame==1){
+            newGameStatsPrefedefined();
+            AplicationPangramas.resetGame=0;
+        }else{
+            newGameStatsRandom();//chama o metodo para carregar um novo jogo de maneira aleatoria
+        }
+        itemMenuPause.setEnabled(true);
         
     }//GEN-LAST:event_menuNovoJogoActionPerformed
    
@@ -963,6 +1063,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         textArea.requestFocus();
         textArea.setText(textArea.getText().replace(textArea.getText(), ""));
         cleanScreen();
+        changeStateItensMenu(true);
         carregarPangrama();
         if(!menuConfigPangrama.isEnabled()){
             menuConfigPangrama.setEnabled(true);
@@ -980,7 +1081,18 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         textArea.requestFocus();
         textArea.setText(textArea.getText().replace(textArea.getText(), ""));
         cleanScreen();
+        changeStateItensMenu(true);
         
+    }
+    
+    private void changeStateItensMenu(boolean state){
+        if(state){
+            itemMenuGerarPang.setEnabled(true);
+            itemMenuLingPangrama.setEnabled(true);
+        }else{
+            itemMenuGerarPang.setEnabled(false);
+            itemMenuLingPangrama.setEnabled(false);
+        }
     }
     
     private void cleanScreen(){
@@ -1018,8 +1130,11 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
                 JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: "
                           + percentValor.getText()+"%"+"\nComece um novo jogo!", "Pangrama completo!",JOptionPane.INFORMATION_MESSAGE);
-                
+                erroValorLast.setText(erroValor.getText());
+                acertoValorLast.setText(acertoValor.getText());
+                percentValorLast.setText(percentValor.getText());
             textArea.setEnabled(false);
+            itemMenuPause.setEnabled(false);
             menuConfigPangrama.setEnabled(false);
             }
         }
@@ -1031,7 +1146,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         menuNovoJogo.setEnabled(false);//Menu de novo jogo desabilitado
         menuConfigPangrama.setEnabled(false);//Menu de configuração de pangramas desabilitado
         menuAjuda.setEnabled(false);//menu de ajuda desabilitado
-        modoAjuda.setText("MODO AJUDA");//Insere texto em uma LABEL ilustrando o modo ajuda
+        lblHelp.setText("MODO AJUDA");//Insere texto em uma LABEL ilustrando o modo ajuda
         cleanScreen();
         pangramaLabel.setText("");
         if(!textArea.isEnabled()){
@@ -1057,14 +1172,19 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuAjudaActionPerformed
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
-        System.out.println(AplicationPangramas.resetGame);
+        if(textArea.isEnabled()||lblHelp.getText().length()>0){
+            lblHelp.setText("");
+        }
+        if(newGameBtn.isVisible()){
+            newGameBtn.setVisible(false);
+        }
         if(AplicationPangramas.resetGame==1){
             newGameStatsPrefedefined();
             AplicationPangramas.resetGame=0;
         }else{
-            newGameStatsRandom();
+            newGameStatsRandom();//chama o metodo para carregar um novo jogo de maneira aleatoria
         }
-        newGameBtn.setVisible(false); 
+        itemMenuPause.setEnabled(true);
     }//GEN-LAST:event_newGameBtnActionPerformed
 
     private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
@@ -1073,26 +1193,39 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         }
         telaViewSobre.setVisible(true);
         telaViewSobre.setAlwaysOnTop(true);
+        
     }//GEN-LAST:event_itemMenuSobreActionPerformed
 
     private void visualizarPangramasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarPangramasActionPerformed
         if(telaViewPangramas==null){
-            telaViewPangramas=new AplicationPangramas(this,true,VIEW);
+            telaViewPangramas=new AplicationPangramas(this,true);
+            
         }
-        telaViewPangramas.setVisible(true);
-        telaViewPangramas.setAlwaysOnTop(true);
+            telaViewPangramas.load(0);
+            telaViewPangramas.setVisible(true);
+            telaViewPangramas.setAlwaysOnTop(true);        
     }//GEN-LAST:event_visualizarPangramasActionPerformed
 
     private void selecionarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarPangramaActionPerformed
         
         if(telaViewPangramas==null){
-            telaViewPangramas=new AplicationPangramas(this,true,SELECT);
+            telaViewPangramas=new AplicationPangramas(this,true);
         }
+        telaViewPangramas.load(1);
         telaViewPangramas.setVisible(true);
         telaViewPangramas.setAlwaysOnTop(true);
-        newGameBtn.setVisible(true);
- 
+         
     }//GEN-LAST:event_selecionarPangramaActionPerformed
+
+    private void itemMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuPauseActionPerformed
+        if(textArea.isEnabled()){
+            lblHelp.setText("Jogo Pausado");
+            textArea.setEnabled(false);
+        }else{
+            lblHelp.setText("");
+            textArea.setEnabled(true);
+        }
+    }//GEN-LAST:event_itemMenuPauseActionPerformed
     
     private void carregarPangrama(){
         //metodo para carregar o pangrama ativo na memoria
@@ -1328,7 +1461,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aBtn;
     private javax.swing.JLabel acertoValor;
+    private javax.swing.JLabel acertoValorLast;
     private javax.swing.JLabel acertosMsg;
+    private javax.swing.JLabel acertosMsgLast;
     private javax.swing.JButton aspasBtn;
     private javax.swing.JButton bBtn;
     private javax.swing.JButton backspcBtn;
@@ -1346,18 +1481,21 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton eBtn;
     private javax.swing.JButton enterBtn;
     private javax.swing.JLabel erroValor;
+    private javax.swing.JLabel erroValorLast;
     private javax.swing.JLabel errosMsg;
+    private javax.swing.JLabel errosMsgLast;
     private javax.swing.JButton fBtn;
     private javax.swing.JButton gBtn;
-    private javax.swing.JMenuItem gerarPangrama;
     private javax.swing.JButton hBtn;
     private javax.swing.JButton iBtn;
     private javax.swing.JMenuItem itemMenuAjuda;
+    private javax.swing.JMenuItem itemMenuGerarPang;
+    private javax.swing.JMenu itemMenuLingPangrama;
+    private javax.swing.JMenuItem itemMenuPause;
     private javax.swing.JMenuItem itemMenuSobre;
     private javax.swing.JButton jBtn;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -1366,9 +1504,12 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton kbtn;
+    private javax.swing.JLabel lblHelp;
     private javax.swing.JButton lbtn;
     private javax.swing.JButton leftBtn;
     private javax.swing.JButton mBtn;
@@ -1379,7 +1520,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemSair;
     private javax.swing.JMenuItem menuNovoJogo;
     private javax.swing.JMenu menuOpcoes;
-    private javax.swing.JLabel modoAjuda;
     private javax.swing.JButton nBtn;
     private javax.swing.JButton newGameBtn;
     private javax.swing.JButton noveBtn;
@@ -1390,7 +1530,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel pangramaLabel;
     private javax.swing.JMenuItem pangramaPortugues;
     private javax.swing.JLabel percentMsg;
+    private javax.swing.JLabel percentMsgLast;
     private javax.swing.JLabel percentValor;
+    private javax.swing.JLabel percentValorLast;
     private javax.swing.JButton pontVirgBtn;
     private javax.swing.JButton pontoBtn;
     private javax.swing.JButton qBtn;
@@ -1403,6 +1545,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton seteBtn;
     private javax.swing.JButton shiftBtn;
     private javax.swing.JLabel simboloPercent;
+    private javax.swing.JLabel simboloPercentLast;
     private javax.swing.JButton spaceBtn;
     private javax.swing.JButton tBtn;
     private javax.swing.JButton tabBtn;
