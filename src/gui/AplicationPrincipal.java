@@ -2,6 +2,7 @@ package gui;
 
 import classes.Jogo;
 import classes.Pangramas;
+import classes.ResultadoRodada;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -23,10 +24,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.4";//Variavel para associar a versão do programa dentro do botão 'Sobre'
+    private String version =  "1.2.5";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private static AplicationPangramas telaViewPangramas;
     private static AplicationSobre telaViewSobre;
-    
+    private ResultadoRodada resultados;
     
     public AplicationPrincipal() {
         
@@ -38,6 +39,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         flagTeclas = 0;//backspace nao esta pressionado por padrao
         flagAjuda = false;//modo ajuda desabilitado
         telaViewPangramas=null;
+        resultados=new ResultadoRodada();
     }
     
     @SuppressWarnings("unchecked")
@@ -124,13 +126,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         simboloPercent = new javax.swing.JLabel();
         percentValor = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        acertosMsgLast = new javax.swing.JLabel();
-        acertoValorLast = new javax.swing.JLabel();
-        errosMsgLast = new javax.swing.JLabel();
-        erroValorLast = new javax.swing.JLabel();
-        percentMsgLast = new javax.swing.JLabel();
-        simboloPercentLast = new javax.swing.JLabel();
-        percentValorLast = new javax.swing.JLabel();
+        btnUltimosResultados = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         lblHelp = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
@@ -727,70 +723,31 @@ public class AplicationPrincipal extends javax.swing.JFrame {
 
             jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-            acertosMsgLast.setForeground(new java.awt.Color(0, 153, 204));
-            acertosMsgLast.setText("Acertos");
-
-            acertoValorLast.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            acertoValorLast.setText("0");
-
-            errosMsgLast.setForeground(new java.awt.Color(255, 0, 0));
-            errosMsgLast.setText("Erros");
-
-            erroValorLast.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            erroValorLast.setText("0");
-
-            percentMsgLast.setForeground(new java.awt.Color(0, 102, 0));
-            percentMsgLast.setText("Porcentagem");
-
-            simboloPercentLast.setText("%");
-
-            percentValorLast.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            percentValorLast.setText("0");
+            btnUltimosResultados.setText("Visualizar");
+            btnUltimosResultados.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnUltimosResultadosActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
             jPanel5.setLayout(jPanel5Layout);
             jPanel5Layout.setHorizontalGroup(
                 jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(erroValorLast, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(errosMsgLast, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGap(50, 50, 50)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(acertosMsgLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(acertoValorLast, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(48, 48, 48)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(percentMsgLast)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(simboloPercentLast)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(percentValorLast, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap())
+                    .addGap(83, 83, 83)
+                    .addComponent(btnUltimosResultados)
+                    .addContainerGap(89, Short.MAX_VALUE))
             );
             jPanel5Layout.setVerticalGroup(
                 jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(percentMsgLast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(errosMsgLast)
-                                .addComponent(acertosMsgLast))
-                            .addGap(2, 2, 2)))
-                    .addGap(6, 6, 6)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(percentValorLast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(erroValorLast)
-                            .addComponent(acertoValorLast)
-                            .addComponent(simboloPercentLast)))
-                    .addContainerGap(22, Short.MAX_VALUE))
+                    .addGap(21, 21, 21)
+                    .addComponent(btnUltimosResultados)
+                    .addContainerGap(25, Short.MAX_VALUE))
             );
 
-            jTabbedPane1.addTab("Ultimo resultado", jPanel5);
+            jTabbedPane1.addTab("Ultimos resultados", jPanel5);
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
@@ -989,6 +946,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             if(newGameBtn.isVisible()){
                 newGameBtn.setVisible(false);
             }
+            if(!itemMenuPause.isEnabled()){
+                itemMenuPause.setEnabled(true);
+            }
             newGameStatsRandom();
         }
         
@@ -1128,11 +1088,12 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 percentValor.setText(String.format("%.2f",game.getPercent()));//seta a porcentagem de acerto
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
-                JOptionPane.showMessageDialog(this, "Acertos: "+acertoValor.getText()+"\nErros: "+erroValor.getText()+"\nPorcentagem de acerto: "
-                          + percentValor.getText()+"%"+"\nComece um novo jogo!", "Pangrama completo!",JOptionPane.INFORMATION_MESSAGE);
-                erroValorLast.setText(erroValor.getText());
-                acertoValorLast.setText(acertoValor.getText());
-                percentValorLast.setText(percentValor.getText());
+                String user = "";
+                do{
+                     user = JOptionPane.showInputDialog(this,"Acertos: "+game.getAcertos()+"\nErros: "+game.getErros()+"\n"
+                        + "Porcentagem de acerto: "+game.getPercent()+"\nInsira seu nome (Máximo 8 Letras)","Pangrama completo!", JOptionPane.INFORMATION_MESSAGE);
+                }while(user.equals("")||user.length()>8);
+                resultados.pressetValue(user.toUpperCase(), game.getAcertos(), game.getErros(), game.getPercent());
             textArea.setEnabled(false);
             itemMenuPause.setEnabled(false);
             menuConfigPangrama.setEnabled(false);
@@ -1169,6 +1130,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         textArea.grabFocus();//captura o foco para a area de texto
         newGameBtn.setVisible(false);
         newGameBtn.setEnabled(false);
+        itemMenuPause.setEnabled(false);
     }//GEN-LAST:event_itemMenuAjudaActionPerformed
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
@@ -1226,6 +1188,11 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             textArea.setEnabled(true);
         }
     }//GEN-LAST:event_itemMenuPauseActionPerformed
+
+    private void btnUltimosResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimosResultadosActionPerformed
+        AplicationJogos app = new AplicationJogos(this, capsFlag, resultados);
+        app.setVisible(true);
+    }//GEN-LAST:event_btnUltimosResultadosActionPerformed
     
     private void carregarPangrama(){
         //metodo para carregar o pangrama ativo na memoria
@@ -1461,14 +1428,13 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aBtn;
     private javax.swing.JLabel acertoValor;
-    private javax.swing.JLabel acertoValorLast;
     private javax.swing.JLabel acertosMsg;
-    private javax.swing.JLabel acertosMsgLast;
     private javax.swing.JButton aspasBtn;
     private javax.swing.JButton bBtn;
     private javax.swing.JButton backspcBtn;
     private javax.swing.JButton barraBtn;
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JButton btnUltimosResultados;
     private javax.swing.JButton cBtn;
     private javax.swing.JButton capsBtn;
     private javax.swing.JButton cdilhaBtn;
@@ -1481,9 +1447,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton eBtn;
     private javax.swing.JButton enterBtn;
     private javax.swing.JLabel erroValor;
-    private javax.swing.JLabel erroValorLast;
     private javax.swing.JLabel errosMsg;
-    private javax.swing.JLabel errosMsgLast;
     private javax.swing.JButton fBtn;
     private javax.swing.JButton gBtn;
     private javax.swing.JButton hBtn;
@@ -1530,9 +1494,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel pangramaLabel;
     private javax.swing.JMenuItem pangramaPortugues;
     private javax.swing.JLabel percentMsg;
-    private javax.swing.JLabel percentMsgLast;
     private javax.swing.JLabel percentValor;
-    private javax.swing.JLabel percentValorLast;
     private javax.swing.JButton pontVirgBtn;
     private javax.swing.JButton pontoBtn;
     private javax.swing.JButton qBtn;
@@ -1545,7 +1507,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton seteBtn;
     private javax.swing.JButton shiftBtn;
     private javax.swing.JLabel simboloPercent;
-    private javax.swing.JLabel simboloPercentLast;
     private javax.swing.JButton spaceBtn;
     private javax.swing.JButton tBtn;
     private javax.swing.JButton tabBtn;
