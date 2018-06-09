@@ -3,13 +3,11 @@ Aps - Teclado virtual/treinamento de digitação
 Programação orientada a objeto
 
 ==== RELEASE NOTES ====
-aps_poo v1.2.4
+aps_poo v1.2.5
 
--  Adicionado função para selecionar pangrama
--  Adicionado função para visualizar pangramas disponiveis (Linguagens Português e inglês)
--  Adicionado score da ultima rodada - acessível através das abas do placar
--  Adicionado função de pausa durante a rodada de digitação
--  Layout levemente ajustado
+-  Adicionado função para visualzar os ultimos resultados
+-  Registro dos ultimos resultados por usuario - acerto - erro - porcentagem de acerto
+-  Alterado apresentação ao terminar uma rodada (É solicitado o nome do jogador)
 
 ========================
 
