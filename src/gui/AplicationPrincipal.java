@@ -24,7 +24,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.5";//Variavel para associar a versão do programa dentro do botão 'Sobre'
+    private String version =  "1.2.51";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private static AplicationPangramas telaViewPangramas;
     private static AplicationSobre telaViewSobre;
     private ResultadoRodada resultados;
@@ -1093,7 +1093,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                      user = JOptionPane.showInputDialog(this,"Acertos: "+game.getAcertos()+"\nErros: "+game.getErros()+"\n"
                         + "Porcentagem de acerto: "+game.getPercent()+"\nInsira seu nome (Máximo 8 Letras)","Pangrama completo!", JOptionPane.INFORMATION_MESSAGE);
                 }while(user.equals("")||user.length()>8);
-                resultados.pressetValue(user.toUpperCase(), game.getAcertos(), game.getErros(), game.getPercent());
+                resultados.pressetValue(user.toUpperCase(),pangramaLabel.getText(), game.getAcertos(), game.getErros(), game.getPercent());
             textArea.setEnabled(false);
             itemMenuPause.setEnabled(false);
             menuConfigPangrama.setEnabled(false);

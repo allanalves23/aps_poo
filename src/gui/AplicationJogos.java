@@ -6,6 +6,7 @@
 package gui;
 
 import classes.ResultadoRodada;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,11 +18,12 @@ public class AplicationJogos extends javax.swing.JDialog {
     /**
      * Creates new form AplicationJogos
      */
-    
+    String [] pangramas;
     private DefaultTableModel table;
     public AplicationJogos(java.awt.Frame parent, boolean modal,ResultadoRodada jogos) {
         super(parent, modal);
         initComponents();
+        pangramas = new String[10];
         table = (DefaultTableModel) tabela.getModel();
         if(jogos!=null){
             int i;
@@ -35,6 +37,7 @@ public class AplicationJogos extends javax.swing.JDialog {
                     jogos.getErros(i),
                     jogos.getPercentAcertos(i)
                 });
+                pangramas[i]=jogos.getPangramas(i);
             }
             
         }
@@ -71,6 +74,11 @@ public class AplicationJogos extends javax.swing.JDialog {
             }
         ));
         tabela.getTableHeader().setReorderingAllowed(false);
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         closeWindow.setText("ok");
@@ -128,6 +136,14 @@ public class AplicationJogos extends javax.swing.JDialog {
     private void closeWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeWindowActionPerformed
         dispose();
     }//GEN-LAST:event_closeWindowActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        if(tabela.getRowCount()>0){
+            if(tabela.getSelectedRow()!=-1){
+                JOptionPane.showMessageDialog(this, pangramas[tabela.getSelectedRow()]);
+            }
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
