@@ -24,7 +24,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.51";//Variavel para associar a versão do programa dentro do botão 'Sobre'
+    private String version =  "1.2.55";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private static AplicationPangramas telaViewPangramas;
     private static AplicationSobre telaViewSobre;
     private ResultadoRodada resultados;
@@ -1190,7 +1190,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuPauseActionPerformed
 
     private void btnUltimosResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimosResultadosActionPerformed
-        AplicationJogos app = new AplicationJogos(this, capsFlag, resultados);
+        AplicationJogos app = new AplicationJogos(this, true, resultados);
         app.setVisible(true);
     }//GEN-LAST:event_btnUltimosResultadosActionPerformed
     

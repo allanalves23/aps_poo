@@ -23,25 +23,8 @@ public class AplicationJogos extends javax.swing.JDialog {
     public AplicationJogos(java.awt.Frame parent, boolean modal,ResultadoRodada jogos) {
         super(parent, modal);
         initComponents();
-        pangramas = new String[10];
         table = (DefaultTableModel) tabela.getModel();
-        if(jogos!=null){
-            int i;
-            for(i = 0; i<jogos.getQntRodadas();i++){
-                if(i>=9){
-                   break;
-                }
-                table.addRow(new Object[]{
-                    jogos.getNome(i),
-                    jogos.getAcertos(i),
-                    jogos.getErros(i),
-                    jogos.getPercentAcertos(i)
-                });
-                pangramas[i]=jogos.getPangramas(i);
-            }
-            
-        }
-        
+        carregarTable(jogos);
     }
 
     /**
@@ -57,11 +40,12 @@ public class AplicationJogos extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         closeWindow = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(457, 358));
-        setMinimumSize(new java.awt.Dimension(457, 358));
-        setPreferredSize(new java.awt.Dimension(457, 358));
+        setMaximumSize(new java.awt.Dimension(384, 402));
+        setMinimumSize(new java.awt.Dimension(384, 402));
+        setPreferredSize(new java.awt.Dimension(384, 402));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ultimos resultados"));
 
@@ -70,9 +54,18 @@ public class AplicationJogos extends javax.swing.JDialog {
 
             },
             new String [] {
-
+                "Nome", "Acertos", "Erros", "% de acertos"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabela.setColumnSelectionAllowed(true);
         tabela.getTableHeader().setReorderingAllowed(false);
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -80,36 +73,51 @@ public class AplicationJogos extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tabela);
+        tabela.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(0).setResizable(false);
+            tabela.getColumnModel().getColumn(1).setResizable(false);
+            tabela.getColumnModel().getColumn(2).setResizable(false);
+            tabela.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        closeWindow.setText("ok");
+        closeWindow.setText("OK");
         closeWindow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeWindowActionPerformed(evt);
             }
         });
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Duplo clique no resultado para ver o pangrama escrito");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(closeWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(164, 164, 164))))
+                        .addGap(123, 123, 123)
+                        .addComponent(closeWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 133, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(5, 5, 5))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(8, 8, 8)
                 .addComponent(closeWindow)
-                .addGap(21, 21, 21))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,15 +126,15 @@ public class AplicationJogos extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -136,11 +144,31 @@ public class AplicationJogos extends javax.swing.JDialog {
     private void closeWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeWindowActionPerformed
         dispose();
     }//GEN-LAST:event_closeWindowActionPerformed
-
+    
+    private void carregarTable(ResultadoRodada jogos){
+        pangramas = new String[10];
+        if(jogos!=null){
+            int i;
+            for(i = 0; i<jogos.getQntRodadas();i++){
+                if(i>=9){
+                   break;
+                }
+                pangramas[i]=jogos.getPangramas(i);
+                table.addRow(new Object[]{
+                    jogos.getNome(i),
+                    jogos.getAcertos(i),
+                    jogos.getErros(i),
+                    jogos.getPercentAcertos(i)
+                });
+            }
+        }
+    }
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-        if(tabela.getRowCount()>0){
+        if(tabela.getRowCount()>0&&evt.getClickCount()==2){
             if(tabela.getSelectedRow()!=-1){
-                JOptionPane.showMessageDialog(this, pangramas[tabela.getSelectedRow()]);
+                JOptionPane.showMessageDialog(this, pangramas[tabela.getSelectedRow()],
+                        "Pangrama do "+table.getValueAt(tabela.getSelectedRow(), 0),
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_tabelaMouseClicked
@@ -148,6 +176,7 @@ public class AplicationJogos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeWindow;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
