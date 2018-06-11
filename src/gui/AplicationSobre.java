@@ -12,6 +12,7 @@ public class AplicationSobre extends javax.swing.JDialog {
     public AplicationSobre(java.awt.Frame parent, boolean modal,String version) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
         this.version.setText(version);
     }
 
@@ -73,7 +74,7 @@ public class AplicationSobre extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(35, 35, 35)
                 .addComponent(lblMsg1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMsg2)
@@ -83,7 +84,7 @@ public class AplicationSobre extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(version, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVersion))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(100, 100, 100))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

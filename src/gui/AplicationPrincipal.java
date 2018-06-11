@@ -24,9 +24,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.55";//Variavel para associar a versão do programa dentro do botão 'Sobre'
-    private static AplicationPangramas telaViewPangramas;
-    private static AplicationSobre telaViewSobre;
+    private String version =  "1.2.6";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private ResultadoRodada resultados;
     
     public AplicationPrincipal() {
@@ -38,7 +36,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         pangramas = new Pangramas();//carregamento dos pangramas
         flagTeclas = 0;//backspace nao esta pressionado por padrao
         flagAjuda = false;//modo ajuda desabilitado
-        telaViewPangramas=null;
         resultados=new ResultadoRodada();
     }
     
@@ -53,21 +50,44 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
+        textArea = new javax.swing.JTextField();
+        oitoBtn = new javax.swing.JButton();
+        menosBtn = new javax.swing.JButton();
+        lbtn = new javax.swing.JButton();
+        capsBtn = new javax.swing.JButton();
+        sBtn = new javax.swing.JButton();
+        rightBtn = new javax.swing.JButton();
+        leftBtn = new javax.swing.JButton();
+        virgBtn = new javax.swing.JButton();
+        kbtn = new javax.swing.JButton();
         aspasBtn = new javax.swing.JButton();
+        pBtn = new javax.swing.JButton();
         tBtn = new javax.swing.JButton();
         pontoBtn = new javax.swing.JButton();
         quatroBtn = new javax.swing.JButton();
         seteBtn = new javax.swing.JButton();
+        backspcBtn = new javax.swing.JButton();
+        xBtn = new javax.swing.JButton();
+        jBtn = new javax.swing.JButton();
+        spaceBtn = new javax.swing.JButton();
+        padrao = spaceBtn.getBackground();
         eBtn = new javax.swing.JButton();
+        concLeftBtn = new javax.swing.JButton();
         downBtn = new javax.swing.JButton();
+        vBtn = new javax.swing.JButton();
         zeroBtn = new javax.swing.JButton();
+        mBtn = new javax.swing.JButton();
+        yBtn = new javax.swing.JButton();
         uBtn = new javax.swing.JButton();
         aBtn = new javax.swing.JButton();
+        dBtn = new javax.swing.JButton();
         rBtn = new javax.swing.JButton();
+        tresBtn = new javax.swing.JButton();
         oBtn = new javax.swing.JButton();
         maisBtn = new javax.swing.JButton();
         hBtn = new javax.swing.JButton();
         upBtn = new javax.swing.JButton();
+        cincoBtn = new javax.swing.JButton();
         doisBtn = new javax.swing.JButton();
         pontVirgBtn = new javax.swing.JButton();
         tabBtn = new javax.swing.JButton();
@@ -88,50 +108,27 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         nBtn = new javax.swing.JButton();
         shiftBtn = new javax.swing.JButton();
         wBtn = new javax.swing.JButton();
-        oitoBtn = new javax.swing.JButton();
-        menosBtn = new javax.swing.JButton();
-        lbtn = new javax.swing.JButton();
-        capsBtn = new javax.swing.JButton();
-        sBtn = new javax.swing.JButton();
-        rightBtn = new javax.swing.JButton();
-        leftBtn = new javax.swing.JButton();
-        virgBtn = new javax.swing.JButton();
-        kbtn = new javax.swing.JButton();
-        pBtn = new javax.swing.JButton();
-        backspcBtn = new javax.swing.JButton();
-        xBtn = new javax.swing.JButton();
-        jBtn = new javax.swing.JButton();
-        spaceBtn = new javax.swing.JButton();
-        padrao = spaceBtn.getBackground();
-        concLeftBtn = new javax.swing.JButton();
-        vBtn = new javax.swing.JButton();
-        mBtn = new javax.swing.JButton();
-        yBtn = new javax.swing.JButton();
-        dBtn = new javax.swing.JButton();
-        tresBtn = new javax.swing.JButton();
-        cincoBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textArea = new javax.swing.JTextArea();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         pangramaLabel = new javax.swing.JLabel();
-        newGameBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
         acertosMsg = new javax.swing.JLabel();
         acertoValor = new javax.swing.JLabel();
+        percentValor = new javax.swing.JLabel();
+        percentMsg = new javax.swing.JLabel();
         errosMsg = new javax.swing.JLabel();
         erroValor = new javax.swing.JLabel();
-        percentMsg = new javax.swing.JLabel();
         simboloPercent = new javax.swing.JLabel();
-        percentValor = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        btnUltimosResultados = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        lblHelp = new javax.swing.JLabel();
+        btnUltimosResultados = new javax.swing.JButton();
+        btnUltimosResultados.setVisible(false);
+        newGameBtn = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         menuOpcoes = new javax.swing.JMenu();
         menuNovoJogo = new javax.swing.JMenuItem();
+        menuUltimosResultados = new javax.swing.JMenuItem();
+        menuItemSair = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         menuConfigPangrama = new javax.swing.JMenu();
         itemMenuLingPangrama = new javax.swing.JMenu();
         pangramaIngles = new javax.swing.JMenuItem();
@@ -139,8 +136,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         itemMenuGerarPang = new javax.swing.JMenuItem();
         selecionarPangrama = new javax.swing.JMenuItem();
         visualizarPangramas = new javax.swing.JMenuItem();
-        itemMenuPause = new javax.swing.JMenuItem();
-        menuItemSair = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemMenuAjuda = new javax.swing.JMenuItem();
         itemMenuSobre = new javax.swing.JMenuItem();
@@ -162,9 +157,65 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         setTitle("aps_poo");
         setResizable(false);
 
+        textArea.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        textArea.setEnabled(false);
+        textArea.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                textAreaCaretUpdate(evt);
+            }
+        });
+        textArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textAreaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textAreaKeyReleased(evt);
+            }
+        });
+
+        oitoBtn.setText("8");
+        oitoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        oitoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        menosBtn.setText("-");
+        menosBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        menosBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        lbtn.setText("L");
+        lbtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        lbtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        capsBtn.setText("CAPSLOCK");
+        capsBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        capsBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        sBtn.setText("S");
+        sBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        sBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        rightBtn.setText("→");
+        rightBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        rightBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        leftBtn.setText("←");
+        leftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        leftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        virgBtn.setText(",");
+        virgBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        virgBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        kbtn.setText("K");
+        kbtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        kbtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
         aspasBtn.setText("'");
         aspasBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         aspasBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        pBtn.setText("P");
+        pBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        pBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
         tBtn.setText("T");
         tBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -182,17 +233,47 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         seteBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         seteBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
+        backspcBtn.setText("Backspace");
+
+        xBtn.setText("X");
+        xBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        xBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        jBtn.setText("J");
+        jBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        jBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        spaceBtn.setText("SPACE");
+        spaceBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        spaceBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
         eBtn.setText("E");
         eBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         eBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        concLeftBtn.setText("[");
+        concLeftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        concLeftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
         downBtn.setText("↓");
         downBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         downBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
+        vBtn.setText("V");
+        vBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        vBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
         zeroBtn.setText("0");
         zeroBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         zeroBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        mBtn.setText("M");
+        mBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        mBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        yBtn.setText("Y");
+        yBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        yBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
         uBtn.setText("U");
         uBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -202,9 +283,17 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         aBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         aBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
+        dBtn.setText("D");
+        dBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        dBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
         rBtn.setText("R");
         rBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         rBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        tresBtn.setText("3");
+        tresBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        tresBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
         oBtn.setText("O");
         oBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -221,6 +310,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         upBtn.setText("↑");
         upBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         upBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+
+        cincoBtn.setText("5");
+        cincoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
+        cincoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
         doisBtn.setText("2");
         doisBtn.setMaximumSize(new java.awt.Dimension(48, 48));
@@ -302,114 +395,13 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             wBtn.setMaximumSize(new java.awt.Dimension(48, 48));
             wBtn.setMinimumSize(new java.awt.Dimension(48, 48));
 
-            oitoBtn.setText("8");
-            oitoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            oitoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            menosBtn.setText("-");
-            menosBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            menosBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            lbtn.setText("L");
-            lbtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            lbtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            capsBtn.setText("CAPSLOCK");
-            capsBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            capsBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            sBtn.setText("S");
-            sBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            sBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            rightBtn.setText("→");
-            rightBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            rightBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            leftBtn.setText("←");
-            leftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            leftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            virgBtn.setText(",");
-            virgBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            virgBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            kbtn.setText("K");
-            kbtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            kbtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            pBtn.setText("P");
-            pBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            pBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            backspcBtn.setText("Backspace");
-
-            xBtn.setText("X");
-            xBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            xBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            jBtn.setText("J");
-            jBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            jBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            spaceBtn.setText("SPACE");
-            spaceBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            spaceBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            concLeftBtn.setText("[");
-            concLeftBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            concLeftBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            vBtn.setText("V");
-            vBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            vBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            mBtn.setText("M");
-            mBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            mBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            yBtn.setText("Y");
-            yBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            yBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            dBtn.setText("D");
-            dBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            dBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            tresBtn.setText("3");
-            tresBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            tresBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            cincoBtn.setText("5");
-            cincoBtn.setMaximumSize(new java.awt.Dimension(48, 48));
-            cincoBtn.setMinimumSize(new java.awt.Dimension(48, 48));
-
-            textArea.setColumns(20);
-            textArea.setRows(5);
-            textArea.setEnabled(false);
-            textArea.addCaretListener(new javax.swing.event.CaretListener() {
-                public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                    textAreaCaretUpdate(evt);
-                }
-            });
-            textArea.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyPressed(java.awt.event.KeyEvent evt) {
-                    textAreaKeyPressed(evt);
-                }
-                public void keyReleased(java.awt.event.KeyEvent evt) {
-                    textAreaKeyReleased(evt);
-                }
-            });
-            jScrollPane1.setViewportView(textArea);
-
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
             jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
+                    .addGap(32, 32, 32)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -451,6 +443,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                             .addGap(2, 2, 2)
                             .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textArea, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(aspasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
@@ -504,7 +497,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                                 .addGap(2, 2, 2)
                                 .addComponent(concLeftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(enterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(capsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
@@ -529,13 +522,14 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                                 .addComponent(cdilhaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
                                 .addComponent(concRightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(25, 25, 25))
+                    .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jSeparator2)
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()
+                    .addComponent(textArea, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -610,165 +604,124 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                         .addComponent(downBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(leftBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(rightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(25, 25, 25))
+                    .addGap(10, 10, 10)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
             );
 
-            jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "COMPLETE O PANGRAMA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 12))); // NOI18N
+            jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Digite o pangrama a seguir", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 12))); // NOI18N
 
-            pangramaLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+            pangramaLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+            pangramaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             pangramaLabel.setText(" ");
-
-            newGameBtn.setBackground(new java.awt.Color(0, 153, 255));
-            newGameBtn.setForeground(new java.awt.Color(255, 255, 255));
-            newGameBtn.setText("Novo Jogo!");
-            newGameBtn.setVisible(false);
-            newGameBtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    newGameBtnActionPerformed(evt);
-                }
-            });
 
             javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
             jPanel2.setLayout(jPanel2Layout);
             jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(339, 339, 339))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(pangramaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addComponent(pangramaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(pangramaLabel)
-                    .addGap(18, 18, 18)
-                    .addComponent(newGameBtn)
-                    .addContainerGap(57, Short.MAX_VALUE))
+                    .addContainerGap()
+                    .addComponent(pangramaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addContainerGap())
             );
 
-            jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Acesse o menu ajuda para orientações", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 0, 11))); // NOI18N
+            jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Score", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Consolas", 1, 12))); // NOI18N
             jPanel3.setToolTipText("");
 
-            jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
+            acertosMsg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             acertosMsg.setForeground(new java.awt.Color(0, 153, 204));
             acertosMsg.setText("Acertos");
 
             acertoValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             acertoValor.setText("0");
 
+            percentValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            percentValor.setText("0");
+
+            percentMsg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+            percentMsg.setForeground(new java.awt.Color(0, 102, 0));
+            percentMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            percentMsg.setText("Acertos");
+
+            errosMsg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             errosMsg.setForeground(new java.awt.Color(255, 0, 0));
             errosMsg.setText("Erros");
 
             erroValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             erroValor.setText("0");
 
-            percentMsg.setForeground(new java.awt.Color(0, 102, 0));
-            percentMsg.setText("Porcentagem");
-
             simboloPercent.setText("%");
-
-            percentValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            percentValor.setText("0");
-
-            javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-            jPanel4.setLayout(jPanel4Layout);
-            jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(erroValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(errosMsg, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGap(50, 50, 50)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(acertosMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(acertoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(48, 48, 48)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(percentMsg)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(simboloPercent)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap())
-            );
-            jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(percentMsg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(errosMsg)
-                                .addComponent(acertosMsg))
-                            .addGap(2, 2, 2)))
-                    .addGap(6, 6, 6)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(percentValor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(erroValor)
-                            .addComponent(acertoValor)
-                            .addComponent(simboloPercent)))
-                    .addContainerGap(22, Short.MAX_VALUE))
-            );
-
-            jTabbedPane1.addTab("Resultado atual", jPanel4);
-
-            jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-            btnUltimosResultados.setText("Visualizar");
-            btnUltimosResultados.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    btnUltimosResultadosActionPerformed(evt);
-                }
-            });
-
-            javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-            jPanel5.setLayout(jPanel5Layout);
-            jPanel5Layout.setHorizontalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(83, 83, 83)
-                    .addComponent(btnUltimosResultados)
-                    .addContainerGap(89, Short.MAX_VALUE))
-            );
-            jPanel5Layout.setVerticalGroup(
-                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(btnUltimosResultados)
-                    .addContainerGap(25, Short.MAX_VALUE))
-            );
-
-            jTabbedPane1.addTab("Ultimos resultados", jPanel5);
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addContainerGap(21, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(acertosMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(acertoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(51, 51, 51)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(erroValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(errosMsg, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGap(45, 45, 45)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(percentMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(simboloPercent)))
+                    .addGap(21, 21, 21))
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(0, 0, 0)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(acertosMsg)
+                                .addGap(8, 8, 8)
+                                .addComponent(acertoValor))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(percentMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(simboloPercent))))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(errosMsg)
+                            .addGap(8, 8, 8)
+                            .addComponent(erroValor)
+                            .addGap(1, 1, 1)))
+                    .addGap(0, 0, Short.MAX_VALUE))
             );
 
-            lblHelp.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-            lblHelp.setForeground(new java.awt.Color(255, 0, 0));
-            lblHelp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            btnUltimosResultados.setBackground(new java.awt.Color(0, 153, 255));
+            btnUltimosResultados.setForeground(new java.awt.Color(255, 255, 255));
+            btnUltimosResultados.setText("VISUALIZAR ULTIMOS RESULTADOS");
+            btnUltimosResultados.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnUltimosResultadosActionPerformed(evt);
+                }
+            });
+
+            newGameBtn.setBackground(new java.awt.Color(0, 153, 255));
+            newGameBtn.setForeground(new java.awt.Color(255, 255, 255));
+            newGameBtn.setText("NOVO JOGO");
+            newGameBtn.setVisible(false);
+            newGameBtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    newGameBtnActionPerformed(evt);
+                }
+            });
 
             menuOpcoes.setText("Opções");
 
@@ -780,6 +733,28 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 }
             });
             menuOpcoes.add(menuNovoJogo);
+
+            menuUltimosResultados.setText("Visualizar Ultimos resultados");
+            menuUltimosResultados.setEnabled(false);
+            menuUltimosResultados.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    menuUltimosResultadosActionPerformed(evt);
+                }
+            });
+            menuOpcoes.add(menuUltimosResultados);
+
+            menuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+            menuItemSair.setText("Sair");
+            menuItemSair.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    menuItemSairActionPerformed(evt);
+                }
+            });
+            menuOpcoes.add(menuItemSair);
+
+            barraMenu.add(menuOpcoes);
+
+            jMenu1.setText("Pangramas");
 
             menuConfigPangrama.setText("Configurações Pangramas");
 
@@ -821,7 +796,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             });
             menuConfigPangrama.add(selecionarPangrama);
 
-            menuOpcoes.add(menuConfigPangrama);
+            jMenu1.add(menuConfigPangrama);
 
             visualizarPangramas.setText("Visualizar Todos os pangramas");
             visualizarPangramas.addActionListener(new java.awt.event.ActionListener() {
@@ -829,28 +804,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     visualizarPangramasActionPerformed(evt);
                 }
             });
-            menuOpcoes.add(visualizarPangramas);
+            jMenu1.add(visualizarPangramas);
 
-            itemMenuPause.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-            itemMenuPause.setText("Pausar Jogo");
-            itemMenuPause.setEnabled(false);
-            itemMenuPause.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    itemMenuPauseActionPerformed(evt);
-                }
-            });
-            menuOpcoes.add(itemMenuPause);
-
-            menuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-            menuItemSair.setText("Sair");
-            menuItemSair.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    menuItemSairActionPerformed(evt);
-                }
-            });
-            menuOpcoes.add(menuItemSair);
-
-            barraMenu.add(menuOpcoes);
+            barraMenu.add(jMenu1);
 
             menuAjuda.setText("Ajuda");
 
@@ -879,91 +835,41 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(314, 314, 314))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(newGameBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUltimosResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(0, 25, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addGap(20, 20, 20)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnUltimosResultados)
+                        .addComponent(newGameBtn))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addGap(5, 5, 5)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             );
 
             pack();
             setLocationRelativeTo(null);
         }// </editor-fold>//GEN-END:initComponents
-
-    private void textAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyPressed
-        switch (evt.getKeyCode()) {//verifica se a tecla pressionada é o BACKSPACE
-            case KeyEvent.VK_BACKSPACE:
-                flagTeclas = 1;//ativa a flag caso positivo
-                break;
-            case KeyEvent.VK_CAPS_LOCK:
-                if(capsFlag){
-                    capsBtn.setBackground(padrao);
-                    capsFlag = false;
-                }else{
-                    capsBtn.setBackground(cinza);
-                    capsFlag = true;
-                }
-                break;
-            default:
-                flagTeclas = 0;//desativa a flag caso negativo
-                break;
-        }
-        trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()),0);//Troca o fundo das teclas
-       
-    }//GEN-LAST:event_textAreaKeyPressed
-
-    private void textAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER&&flagAjuda){//Metodo que sai do modo ajuda para um novo jogo
-            //após o mesmo ter sido habilitado
-            textArea.setEditable(true);
-            lblHelp.setText("");
-            menuConfigPangrama.setEnabled(true);
-            menuNovoJogo.setEnabled(true);
-            menuAjuda.setEnabled(true);
-            flagAjuda=false;
-            newGameBtn.setEnabled(true);
-            if(newGameBtn.isVisible()){
-                newGameBtn.setVisible(false);
-            }
-            if(!itemMenuPause.isEnabled()){
-                itemMenuPause.setEnabled(true);
-            }
-            newGameStatsRandom();
-        }
-        
-         trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()),1);//Troca o fundo das teclas
-    }//GEN-LAST:event_textAreaKeyReleased
-
-    private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
-        //metodo que trata a finalização do programa
-        if (JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza?", DISPOSE_ON_CLOSE,JOptionPane.WARNING_MESSAGE)==0) {
-             System.exit(0);
-        }
-    }//GEN-LAST:event_menuItemSairActionPerformed
     
     private void questionRestartGame(){
-        if(textArea.getText().length()>0 || !acertoValor.getText().equals("0") || !erroValor.getText().equals("0")){
+        if(!acertoValor.getText().equals("0") || !erroValor.getText().equals("0")){
             if(JOptionPane.showConfirmDialog(this, "Carregar um novo pangrama reiniciará o jogo", "Tem certeza?", JOptionPane.YES_NO_OPTION)==0){
                cleanScreen();
                newGameStatsRandom();//carrega um pangrama da mesma tipagem selecionada
@@ -997,31 +903,12 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private void itemMenuGerarPangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerarPangActionPerformed
         questionRestartGame();
     }//GEN-LAST:event_itemMenuGerarPangActionPerformed
-
-    private void menuNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoJogoActionPerformed
-        if(textArea.isEnabled()||lblHelp.getText().length()>0){
-            lblHelp.setText("");
-        }
-        if(newGameBtn.isVisible()){
-            newGameBtn.setVisible(false);
-        }
-        if(AplicationPangramas.resetGame==1){
-            newGameStatsPrefedefined();
-            AplicationPangramas.resetGame=0;
-        }else{
-            newGameStatsRandom();//chama o metodo para carregar um novo jogo de maneira aleatoria
-        }
-        itemMenuPause.setEnabled(true);
-        
-    }//GEN-LAST:event_menuNovoJogoActionPerformed
    
     private void newGameStatsRandom(){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
+        resetTextArea();
         game = new Jogo();
         pangramaLabel.setText(pangramas.carregarPangrama());
         game.inicioJogo(pangramaLabel.getText());
-        textArea.setEnabled(true);
-        textArea.requestFocus();
-        textArea.setText(textArea.getText().replace(textArea.getText(), ""));
         cleanScreen();
         changeStateItensMenu(true);
         carregarPangrama();
@@ -1032,19 +919,24 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     }
     
     public void newGameStatsPrefedefined(){
-        
-        System.out.println(AplicationPangramas.pangramaSelecionado);
+        resetTextArea();
         pangramaLabel.setText(AplicationPangramas.pangramaSelecionado);
         game = new Jogo();
         game.inicioJogo(pangramaLabel.getText());
-        textArea.setEnabled(true);
-        textArea.requestFocus();
-        textArea.setText(textArea.getText().replace(textArea.getText(), ""));
         cleanScreen();
-        changeStateItensMenu(true);
+        
+        if(!menuConfigPangrama.isEnabled()){
+            menuConfigPangrama.setEnabled(true);
+        }
         
     }
-    
+    private void resetTextArea(){
+        if(!textArea.isEnabled()){
+            textArea.setEnabled(true);
+        }
+        textArea.setText("");
+        textArea.requestFocus();
+    }
     private void changeStateItensMenu(boolean state){
         if(state){
             itemMenuGerarPang.setEnabled(true);
@@ -1060,6 +952,84 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         erroValor.setText("0");
         acertoValor.setText("0");
     }
+    private void itemMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAjudaActionPerformed
+        AplicationMenuAjuda app = new AplicationMenuAjuda(this, true);
+        app.setVisible(true);
+    }//GEN-LAST:event_itemMenuAjudaActionPerformed
+
+    private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
+        
+        if(newGameBtn.isVisible()){
+            newGameBtn.setVisible(false);
+        }
+        if(AplicationPangramas.resetGame==1){
+            newGameStatsPrefedefined();
+            AplicationPangramas.resetGame=0;
+        }else{
+            newGameStatsRandom();//chama o metodo para carregar um novo jogo de maneira aleatoria
+        }
+    }//GEN-LAST:event_newGameBtnActionPerformed
+
+    private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
+        AplicationSobre app =new AplicationSobre(this,true,version);
+        app.setVisible(true);
+        app.setAlwaysOnTop(true);
+    }//GEN-LAST:event_itemMenuSobreActionPerformed
+
+    private void visualizarPangramasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarPangramasActionPerformed
+        AplicationPangramas app = new AplicationPangramas(this, true, true);
+        app.setVisible(true);
+    }//GEN-LAST:event_visualizarPangramasActionPerformed
+
+    private void selecionarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarPangramaActionPerformed
+        AplicationPangramas app = new AplicationPangramas(this, true);
+        app.setVisible(true);
+    }//GEN-LAST:event_selecionarPangramaActionPerformed
+
+    private void btnUltimosResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimosResultadosActionPerformed
+        AplicationJogos app = new AplicationJogos(this, true, resultados);
+        app.setVisible(true);
+    }//GEN-LAST:event_btnUltimosResultadosActionPerformed
+
+    private void textAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyPressed
+        switch (evt.getKeyCode()) {//verifica se a tecla pressionada é o BACKSPACE
+            case KeyEvent.VK_BACKSPACE:
+            flagTeclas = 1;//ativa a flag caso positivo
+            break;
+            case KeyEvent.VK_CAPS_LOCK:
+            if(capsFlag){
+                capsBtn.setBackground(padrao);
+                capsFlag = false;
+            }else{
+                capsBtn.setBackground(cinza);
+                capsFlag = true;
+            }
+            break;
+            default:
+            flagTeclas = 0;//desativa a flag caso negativo
+            break;
+        }
+        trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()),0);//Troca o fundo das teclas
+    }//GEN-LAST:event_textAreaKeyPressed
+
+    private void textAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textAreaKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER&&flagAjuda){//Metodo que sai do modo ajuda para um novo jogo
+            //após o mesmo ter sido habilitado
+            textArea.setEditable(true);
+            menuConfigPangrama.setEnabled(true);
+            menuNovoJogo.setEnabled(true);
+            menuAjuda.setEnabled(true);
+            flagAjuda=false;
+            newGameBtn.setEnabled(true);
+            if(newGameBtn.isVisible()){
+                newGameBtn.setVisible(false);
+            }
+            newGameStatsRandom();
+        }
+
+        trocaFundo(verificaTeclaInput(evt.getKeyChar(), evt.getKeyCode()),1);//Troca o fundo das teclas
+    }//GEN-LAST:event_textAreaKeyReleased
+
     private void textAreaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_textAreaCaretUpdate
         if(textArea.getText().length()==0){
             return;
@@ -1072,8 +1042,8 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             //verifica se a flag de ajuda estiver desabilitada e se a area de texto estiver habilitada
             int tamanho;
             if(textArea.getText().length()!=0){
-              tamanho = textArea.getText().length();//captura o comprimento da frase dentro da area de texto
-  
+                tamanho = textArea.getText().length();//captura o comprimento da frase dentro da area de texto
+
             }else{
                 tamanho = 0;
             }
@@ -1083,59 +1053,42 @@ public class AplicationPrincipal extends javax.swing.JFrame {
 
                 }else{
                     erroValor.setText(Integer.toString(game.getErros()));//setar incremento de erro na label
-                    
+
                 }
                 percentValor.setText(String.format("%.2f",game.getPercent()));//seta a porcentagem de acerto
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
                 String user = "";
                 do{
-                     user = JOptionPane.showInputDialog(this,"Acertos: "+game.getAcertos()+"\nErros: "+game.getErros()+"\n"
-                        + "Porcentagem de acerto: "+game.getPercent()+"\nInsira seu nome (Máximo 8 Letras)","Pangrama completo!", JOptionPane.INFORMATION_MESSAGE);
+                    user = JOptionPane.showInputDialog(this,"Acertos: "+game.getAcertos()+"\nErros: "+game.getErros()+"\n"
+                        + "Porcentagem de acerto: "+String.format("%.2f",game.getPercent())+"\nInsira seu nome (Máximo 8 Letras)","Pangrama completo!", JOptionPane.INFORMATION_MESSAGE);
                 }while(user.equals("")||user.length()>8);
                 resultados.pressetValue(user.toUpperCase(),pangramaLabel.getText(), game.getAcertos(), game.getErros(), game.getPercent());
-            textArea.setEnabled(false);
-            itemMenuPause.setEnabled(false);
-            menuConfigPangrama.setEnabled(false);
+                if(!btnUltimosResultados.isVisible() && !menuUltimosResultados.isEnabled()){
+                    btnUltimosResultados.setVisible(true);
+                    menuUltimosResultados.setEnabled(true);
+                }
+                textArea.setEnabled(false);
+                menuConfigPangrama.setEnabled(false);
             }
         }
     }//GEN-LAST:event_textAreaCaretUpdate
 
-    private void itemMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAjudaActionPerformed
-        //Metodo para habilitar o modo ajuda
-        flagAjuda=true;//flag modo ajuda é habilitado
-        menuNovoJogo.setEnabled(false);//Menu de novo jogo desabilitado
-        menuConfigPangrama.setEnabled(false);//Menu de configuração de pangramas desabilitado
-        menuAjuda.setEnabled(false);//menu de ajuda desabilitado
-        lblHelp.setText("MODO AJUDA");//Insere texto em uma LABEL ilustrando o modo ajuda
-        cleanScreen();
-        pangramaLabel.setText("");
-        if(!textArea.isEnabled()){
-            textArea.setEnabled(true);//habilita a area de texto
+    private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
+        //metodo que trata a finalização do programa
+        if (JOptionPane.showConfirmDialog(this , "Todo o seu progresso será perdido", "Tem certeza?", DISPOSE_ON_CLOSE,JOptionPane.WARNING_MESSAGE)==0) {
+            System.exit(0);
         }
-        //seta o texto abaixo na area de texto
-        textArea.setText("Este é um jogo treinamento de digitação.\n" +
-"Se consiste em digitar corretamente todo pangrama com o objetivo\n" +
-"de conseguir a maior porcentagem de aproveitamento de acertos possivel.\n" +
-"São existentes pangramas em inglês e português.\n" +
-"Por padrão os pangramas na linguagem português vem habilitados.\n" +
-"Acesse o menu 'Configurações Pangramas', 'Linguagem Pangrama' e selecione\n" +
-"o idioma de preferencia.\n" +
-"É possível gerar um outro pangrama randomicamente acessando a opção\n" +
-"'Gerar outro pangrama' dentro de 'Configurações Pangramas'.\n" +
-"Para resetar seu jogo Acesse a opção 'Novo jogo' ou pressione as teclas CTRL + N.\n" +
-"\n" +
-"Pressione Enter para sair do modo Ajuda.");
-        textArea.setEditable(false);//Bloqueia edição na area de texto
-        textArea.grabFocus();//captura o foco para a area de texto
-        newGameBtn.setVisible(false);
-        newGameBtn.setEnabled(false);
-        itemMenuPause.setEnabled(false);
-    }//GEN-LAST:event_itemMenuAjudaActionPerformed
+    }//GEN-LAST:event_menuItemSairActionPerformed
 
-    private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
-        if(textArea.isEnabled()||lblHelp.getText().length()>0){
-            lblHelp.setText("");
+    private void menuUltimosResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUltimosResultadosActionPerformed
+        AplicationJogos app = new AplicationJogos(this, true, resultados);
+        app.setVisible(true);
+    }//GEN-LAST:event_menuUltimosResultadosActionPerformed
+
+    private void menuNovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNovoJogoActionPerformed
+        if(!textArea.isEnabled()){
+            textArea.setEnabled(true);
         }
         if(newGameBtn.isVisible()){
             newGameBtn.setVisible(false);
@@ -1146,53 +1099,8 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         }else{
             newGameStatsRandom();//chama o metodo para carregar um novo jogo de maneira aleatoria
         }
-        itemMenuPause.setEnabled(true);
-    }//GEN-LAST:event_newGameBtnActionPerformed
 
-    private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
-        if(telaViewSobre==null){
-            telaViewSobre=new AplicationSobre(this,true,version);
-        }
-        telaViewSobre.setVisible(true);
-        telaViewSobre.setAlwaysOnTop(true);
-        
-    }//GEN-LAST:event_itemMenuSobreActionPerformed
-
-    private void visualizarPangramasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarPangramasActionPerformed
-        if(telaViewPangramas==null){
-            telaViewPangramas=new AplicationPangramas(this,true);
-            
-        }
-            telaViewPangramas.load(0);
-            telaViewPangramas.setVisible(true);
-            telaViewPangramas.setAlwaysOnTop(true);        
-    }//GEN-LAST:event_visualizarPangramasActionPerformed
-
-    private void selecionarPangramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionarPangramaActionPerformed
-        
-        if(telaViewPangramas==null){
-            telaViewPangramas=new AplicationPangramas(this,true);
-        }
-        telaViewPangramas.load(1);
-        telaViewPangramas.setVisible(true);
-        telaViewPangramas.setAlwaysOnTop(true);
-         
-    }//GEN-LAST:event_selecionarPangramaActionPerformed
-
-    private void itemMenuPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuPauseActionPerformed
-        if(textArea.isEnabled()){
-            lblHelp.setText("Jogo Pausado");
-            textArea.setEnabled(false);
-        }else{
-            lblHelp.setText("");
-            textArea.setEnabled(true);
-        }
-    }//GEN-LAST:event_itemMenuPauseActionPerformed
-
-    private void btnUltimosResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimosResultadosActionPerformed
-        AplicationJogos app = new AplicationJogos(this, true, resultados);
-        app.setVisible(true);
-    }//GEN-LAST:event_btnUltimosResultadosActionPerformed
+    }//GEN-LAST:event_menuNovoJogoActionPerformed
     
     private void carregarPangrama(){
         //metodo para carregar o pangrama ativo na memoria
@@ -1455,10 +1363,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemMenuAjuda;
     private javax.swing.JMenuItem itemMenuGerarPang;
     private javax.swing.JMenu itemMenuLingPangrama;
-    private javax.swing.JMenuItem itemMenuPause;
     private javax.swing.JMenuItem itemMenuSobre;
     private javax.swing.JButton jBtn;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -1467,13 +1375,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kbtn;
-    private javax.swing.JLabel lblHelp;
     private javax.swing.JButton lbtn;
     private javax.swing.JButton leftBtn;
     private javax.swing.JButton mBtn;
@@ -1484,6 +1388,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemSair;
     private javax.swing.JMenuItem menuNovoJogo;
     private javax.swing.JMenu menuOpcoes;
+    private javax.swing.JMenuItem menuUltimosResultados;
     private javax.swing.JButton nBtn;
     private javax.swing.JButton newGameBtn;
     private javax.swing.JButton noveBtn;
@@ -1510,7 +1415,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton spaceBtn;
     private javax.swing.JButton tBtn;
     private javax.swing.JButton tabBtn;
-    private javax.swing.JTextArea textArea;
+    private javax.swing.JTextField textArea;
     private javax.swing.JButton tresBtn;
     private javax.swing.JButton uBtn;
     private javax.swing.JButton umBtn;

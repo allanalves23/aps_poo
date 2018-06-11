@@ -8,6 +8,7 @@ package gui;
 import classes.ResultadoRodada;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -23,6 +24,7 @@ public class AplicationJogos extends javax.swing.JDialog {
     public AplicationJogos(java.awt.Frame parent, boolean modal,ResultadoRodada jogos) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
         table = (DefaultTableModel) tabela.getModel();
         carregarTable(jogos);
     }
@@ -39,13 +41,15 @@ public class AplicationJogos extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         closeWindow = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ultimos Resultados");
         setMaximumSize(new java.awt.Dimension(384, 402));
         setMinimumSize(new java.awt.Dimension(384, 402));
-        setPreferredSize(new java.awt.Dimension(384, 402));
+        setType(java.awt.Window.Type.UTILITY);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ultimos resultados"));
 
@@ -138,7 +142,6 @@ public class AplicationJogos extends javax.swing.JDialog {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeWindowActionPerformed
@@ -146,6 +149,7 @@ public class AplicationJogos extends javax.swing.JDialog {
     }//GEN-LAST:event_closeWindowActionPerformed
     
     private void carregarTable(ResultadoRodada jogos){
+       
         pangramas = new String[10];
         if(jogos!=null){
             int i;
@@ -163,6 +167,7 @@ public class AplicationJogos extends javax.swing.JDialog {
             }
         }
     }
+    
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         if(tabela.getRowCount()>0&&evt.getClickCount()==2){
             if(tabela.getSelectedRow()!=-1){
