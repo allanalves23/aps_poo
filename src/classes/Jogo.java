@@ -112,6 +112,10 @@ public class Jogo {
     public float getPercent(){//captura a porcentagem de acertos
         return porcentagemAcerto;
     }    
+
+    public boolean isInicio() {
+        return inicio;
+    }
     public boolean fimJogo(){
         //verifica o se o jogo terminou
             return index==tamanhoPangrama;//retorna true caso a expressão for verdade
