@@ -1,14 +1,15 @@
 ﻿# aps_poo
 Aps - Teclado virtual/treinamento de digitação
+
 Programação orientada a objeto
 
 ==== RELEASE NOTES ====
-aps_poo v1.2.6
+aps_poo v1.2.70
 
 -  Layout Reajustado
--  Aprimorado tela de modo ajuda para uma nova instancia de um jDialog
--  Adicionado Barra de loading ao aplicar o pangrama para a proxima rodada
--  Removido a função de modo pause
+-  Modificado insercao de nome do jogador
+-  Adicionado funcao para mudar a cor da tecla ao ser pressionado
+-  Background modificado e icones adicionados
 
 ========================
 
