@@ -3,12 +3,13 @@ package gui;
 import classes.*;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -32,8 +33,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.8";//Variavel para associar a versão do programa dentro do botão 'Sobre'
+    private String version =  "1.2.9";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private ResultadoRodada resultados;
+    private int cont = 0;
+    private Timer timer = new Timer();
     public AplicationPrincipal() {
         
        
@@ -133,6 +136,8 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         simboloPercent = new javax.swing.JLabel();
         errosMsg = new javax.swing.JLabel();
         erroValor = new javax.swing.JLabel();
+        timerTextLbl = new javax.swing.JLabel();
+        timerLbl = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
         menuOpcoes = new javax.swing.JMenu();
         menuNovoJogo = new javax.swing.JMenuItem();
@@ -156,6 +161,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         visualizarPangramas = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemMenuAjuda = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         itemMenuSobre = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
@@ -1033,32 +1039,49 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             erroValor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             erroValor.setText("0");
 
+            timerTextLbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+            timerTextLbl.setForeground(new java.awt.Color(255, 255, 255));
+            timerTextLbl.setText("TEMPO");
+
+            timerLbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+            timerLbl.setForeground(new java.awt.Color(255, 255, 255));
+            timerLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            timerLbl.setText("00 : 00 : 00");
+
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
             jPanel3Layout.setHorizontalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(acertosMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(acertoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(51, 51, 51)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(erroValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(errosMsg, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGap(45, 45, 45)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(simboloPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(percentMsg))
-                    .addContainerGap())
+                            .addGap(16, 16, 16)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(acertosMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(acertoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(74, 74, 74))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(timerTextLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(erroValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(errosMsg, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(69, 69, 69)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(simboloPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(percentMsg)))
+                        .addComponent(timerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(16, 16, 16))
             );
             jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(percentMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(errosMsg)
@@ -1069,7 +1092,11 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                         .addComponent(erroValor)
                         .addComponent(percentValor, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(simboloPercent))
-                    .addContainerGap())
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(timerTextLbl)
+                        .addComponent(timerLbl))
+                    .addGap(0, 11, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1081,9 +1108,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGap(37, 37, 37)
                             .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(89, 89, 89)
+                            .addGap(48, 48, 48)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                            .addGap(31, 31, 31)
                             .addComponent(btnUltimosResultados))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGap(36, 36, 36)
@@ -1096,13 +1123,13 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnUltimosResultados))))
-                    .addGap(32, 32, 32)
+                                .addComponent(btnUltimosResultados)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(textArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1263,6 +1290,14 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             });
             menuAjuda.add(itemMenuAjuda);
 
+            jMenuItem5.setText("jMenuItem5");
+            jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItem5ActionPerformed(evt);
+                }
+            });
+            menuAjuda.add(jMenuItem5);
+
             itemMenuSobre.setText("Sobre");
             itemMenuSobre.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1368,6 +1403,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         if(!menuConfigPangrama.isEnabled()){
             menuConfigPangrama.setEnabled(true);
         }
+        contagemTempo();
     }
     
     private void resetTextArea(){//habilita o jTextField e remove o texto
@@ -1505,7 +1541,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 percentValor.setText(String.format("%.2f",game.getPercent()));//seta a porcentagem de acerto
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
-                resultados.pressetValue(Player.nome,pangramaLabel.getText(), game.getAcertos(), game.getErros(), game.getPercent());
+                timer.cancel();
+                System.out.println(timerLbl.getText());
+                resultados.pressetValue(Player.nome,pangramaLabel.getText(), game.getAcertos(), game.getErros(), game.getPercent(),timerLbl.getText());
                 if(!btnUltimosResultados.isVisible() && !menuUltimosResultados.isEnabled()){
                     btnUltimosResultados.setVisible(true);
                     menuUltimosResultados.setEnabled(true);
@@ -1783,6 +1821,11 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private void itemMenuTeclaTurquesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuTeclaTurquesaActionPerformed
         setBackgroundColor((float)0.436, (float)0.700, (float)0.745);
     }//GEN-LAST:event_itemMenuTeclaTurquesaActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        NewJDialog n = new NewJDialog(this, true);
+        n.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
     
     private void setBackgroundColor(float h, float s, float b){
         cor = Color.getHSBColor(h, s, b);
@@ -2024,6 +2067,21 @@ public class AplicationPrincipal extends javax.swing.JFrame {
           
         }while(nick.trim().length()<3 || nick.trim().length()>8);
     }
+    
+    private void contagemTempo(){
+        
+        
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                cont++;
+                int segundos = cont % 60;
+                int minutos = cont / 60;
+                int horas = minutos / 60;
+                timerLbl.setText(String.format("%02d : %02d : %02d", horas,minutos,segundos,cont));
+            }
+        }, 1000, 1000);
+    }
     /**
      * @param args the command line arguments
      */
@@ -2102,6 +2160,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2146,6 +2205,8 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton tBtn;
     private javax.swing.JButton tabBtn;
     private javax.swing.JTextField textArea;
+    private javax.swing.JLabel timerLbl;
+    private javax.swing.JLabel timerTextLbl;
     private javax.swing.JButton tresBtn;
     private javax.swing.JButton uBtn;
     private javax.swing.JButton umBtn;

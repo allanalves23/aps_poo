@@ -19,7 +19,8 @@ public class AplicationJogos extends javax.swing.JDialog {
     /**
      * Creates new form AplicationJogos
      */
-    String [] pangramas;
+    private String [] pangramas;
+    private String [] tempo;
     private DefaultTableModel table;
     public AplicationJogos(java.awt.Frame parent, boolean modal,ResultadoRodada jogos) {
         super(parent, modal);
@@ -47,7 +48,6 @@ public class AplicationJogos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ultimos Resultados");
-        setMaximumSize(new java.awt.Dimension(384, 402));
         setMinimumSize(new java.awt.Dimension(384, 402));
         setType(java.awt.Window.Type.UTILITY);
 
@@ -146,6 +146,7 @@ public class AplicationJogos extends javax.swing.JDialog {
     private void carregarTable(ResultadoRodada jogos){
        
         pangramas = new String[10];
+        tempo = new String[10];
         if(jogos!=null){
             int i;
             for(i = 0; i<jogos.getQntRodadas();i++){
@@ -153,11 +154,12 @@ public class AplicationJogos extends javax.swing.JDialog {
                    break;
                 }
                 pangramas[i]=jogos.getPangramas(i);
+                tempo[i]=jogos.getTempo(i);
                 table.addRow(new Object[]{
                     jogos.getNome(i),
                     jogos.getAcertos(i),
                     jogos.getErros(i),
-                    jogos.getPercentAcertos(i)
+                    jogos.getPercentAcertos(i),
                 });
             }
         }
@@ -166,7 +168,8 @@ public class AplicationJogos extends javax.swing.JDialog {
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         if(tabela.getRowCount()>0&&evt.getClickCount()==2){
             if(tabela.getSelectedRow()!=-1){
-                JOptionPane.showMessageDialog(this, pangramas[tabela.getSelectedRow()],
+                JOptionPane.showMessageDialog(this, "Pangrama: "+pangramas[tabela.getSelectedRow()]
+                        +"\nTempo(hora:min:seg): "+ tempo[tabela.getSelectedRow()],
                         "Pangrama jogado de "+table.getValueAt(tabela.getSelectedRow(), 0),
                         JOptionPane.INFORMATION_MESSAGE);
             }

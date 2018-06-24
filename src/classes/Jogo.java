@@ -5,6 +5,9 @@
  */
 package classes;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author allan wanderley alves
@@ -20,6 +23,7 @@ public class Jogo {
     private int tamanhoPangrama;//Armazena o tamanho em caracteres do pangrama ativo
     private String pangramaAtual;
     private int reset;
+   
 
     public String getPangramaAtual() {
         return pangramaAtual;

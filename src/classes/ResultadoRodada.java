@@ -17,6 +17,7 @@ public class ResultadoRodada {
     private String[] nome;
     private int qntRodadas;
     private int pointer;
+    private String [] tempo;
 
     public ResultadoRodada() {
         acertos = new int[10];
@@ -24,11 +25,12 @@ public class ResultadoRodada {
         percentAcertos = new String[10];
         nome = new String[10];
         pangramas = new String[10];
+        tempo = new String[10];
         qntRodadas=0;
         pointer=qntRodadas;
     }
     
-    public void pressetValue(String nome, String pangrama, int acertos, int erros, float percentValue){
+    public void pressetValue(String nome, String pangrama, int acertos, int erros, float percentValue,String tempo){
         if(qntRodadas==10){
             pointer=0;
         }
@@ -37,10 +39,15 @@ public class ResultadoRodada {
         this.acertos[pointer]=acertos;
         this.erros[pointer]=erros;
         this.percentAcertos[pointer]=String.format("%.2f", percentValue);
+        this.tempo[pointer]=tempo;
         qntRodadas++;
         pointer++;
         
         
+    }
+
+    public String getTempo(int indice) {
+        return tempo[indice];
     }
 
     public int getQntRodadas() {
