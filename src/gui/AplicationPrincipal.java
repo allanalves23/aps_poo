@@ -161,7 +161,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         visualizarPangramas = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itemMenuAjuda = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         itemMenuSobre = new javax.swing.JMenuItem();
 
         jMenuItem3.setText("jMenuItem3");
@@ -1290,14 +1289,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             });
             menuAjuda.add(itemMenuAjuda);
 
-            jMenuItem5.setText("jMenuItem5");
-            jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jMenuItem5ActionPerformed(evt);
-                }
-            });
-            menuAjuda.add(jMenuItem5);
-
             itemMenuSobre.setText("Sobre");
             itemMenuSobre.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1428,11 +1419,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         acertoValor.setText("0");
     }
     
-    private void itemMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAjudaActionPerformed
-        AplicationMenuAjuda app = new AplicationMenuAjuda(this, true);
-        app.setVisible(true);
-    }//GEN-LAST:event_itemMenuAjudaActionPerformed
-
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
         if(AplicationPangramas.resetGame==1){
             newGameStats(true);//chama o metodo para carregar um novo jogo de maneira predefinida
@@ -1441,11 +1427,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             newGameStats(false);//chama o metodo para carregar um novo jogo de maneira aleatoria
         }
     }//GEN-LAST:event_newGameBtnActionPerformed
-
-    private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
-        AplicationSobre app =new AplicationSobre(this,true,version);
-        app.setVisible(true);
-    }//GEN-LAST:event_itemMenuSobreActionPerformed
 
     private void visualizarPangramasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarPangramasActionPerformed
         AplicationPangramas app = new AplicationPangramas(this, true, true);
@@ -1822,10 +1803,15 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         setBackgroundColor((float)0.436, (float)0.700, (float)0.745);
     }//GEN-LAST:event_itemMenuTeclaTurquesaActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        NewJDialog n = new NewJDialog(this, true);
-        n.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
+        AplicationSobre app =new AplicationSobre(this,true,version);
+        app.setVisible(true);
+    }//GEN-LAST:event_itemMenuSobreActionPerformed
+
+    private void itemMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAjudaActionPerformed
+        AplicationMenuAjuda app = new AplicationMenuAjuda(this, true);
+        app.setVisible(true);
+    }//GEN-LAST:event_itemMenuAjudaActionPerformed
     
     private void setBackgroundColor(float h, float s, float b){
         cor = Color.getHSBColor(h, s, b);
@@ -2160,7 +2146,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
