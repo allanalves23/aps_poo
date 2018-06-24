@@ -19,7 +19,6 @@ public class AplicationPangramas extends javax.swing.JDialog {
     
     private Pangramas pangramas;
     private DefaultTableModel model;
-    public static String pangramaSelecionado;
     public static int resetGame;
     private SwingWorker loadIn;
        
@@ -198,11 +197,9 @@ public class AplicationPangramas extends javax.swing.JDialog {
                         .addGap(147, 147, 147)
                         .addComponent(btnSelectPangrama, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(115, 115, 115)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(pb, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pb, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pbLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
         );
@@ -289,7 +286,7 @@ public class AplicationPangramas extends javax.swing.JDialog {
                     }
                 };
                 loadIn.execute();
-                pangramaSelecionado = (String) tabela.getValueAt(tabela.getSelectedRow(), 1);
+                Pangramas.pangramaSelecionado = (String) tabela.getValueAt(tabela.getSelectedRow(), 1);
                 resetGame=1;
             }
         }else{

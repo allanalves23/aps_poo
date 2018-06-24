@@ -85,12 +85,9 @@
                           <Component id="btnSelectPangrama" min="-2" pref="154" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Component id="pb" min="-2" pref="224" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="pb" min="-2" pref="224" max="-2" attributes="0"/>
                               <Component id="pbLabel" min="-2" pref="224" max="-2" attributes="0"/>
                           </Group>
                       </Group>
