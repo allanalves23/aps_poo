@@ -53,17 +53,19 @@ public class AplicationJogos extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(37, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()));
+        jPanel1.setMaximumSize(new java.awt.Dimension(461, 402));
+        jPanel1.setMinimumSize(new java.awt.Dimension(461, 402));
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Acertos", "Erros", "% de acertos"
+                "Nome", "Tempo", "Acertos", "Erros", "Aproveitamento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -84,6 +86,7 @@ public class AplicationJogos extends javax.swing.JDialog {
             tabela.getColumnModel().getColumn(1).setResizable(false);
             tabela.getColumnModel().getColumn(2).setResizable(false);
             tabela.getColumnModel().getColumn(3).setResizable(false);
+            tabela.getColumnModel().getColumn(4).setResizable(false);
         }
 
         closeWindow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ok.png"))); // NOI18N
@@ -105,11 +108,11 @@ public class AplicationJogos extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(5, 5, 5))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addGap(176, 176, 176)
                 .addComponent(closeWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -129,7 +132,9 @@ public class AplicationJogos extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,12 +159,12 @@ public class AplicationJogos extends javax.swing.JDialog {
                    break;
                 }
                 pangramas[i]=jogos.getPangramas(i);
-                tempo[i]=jogos.getTempo(i);
                 table.addRow(new Object[]{
                     jogos.getNome(i),
+                    jogos.getTempo(i),
                     jogos.getAcertos(i),
                     jogos.getErros(i),
-                    jogos.getPercentAcertos(i),
+                    jogos.getPercentAcertos(i)
                 });
             }
         }
@@ -168,8 +173,7 @@ public class AplicationJogos extends javax.swing.JDialog {
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         if(tabela.getRowCount()>0&&evt.getClickCount()==2){
             if(tabela.getSelectedRow()!=-1){
-                JOptionPane.showMessageDialog(this, "Pangrama: "+pangramas[tabela.getSelectedRow()]
-                        +"\nTempo(hora:min:seg): "+ tempo[tabela.getSelectedRow()],
+                JOptionPane.showMessageDialog(this, "Pangrama: "+pangramas[tabela.getSelectedRow()],
                         "Pangrama jogado de "+table.getValueAt(tabela.getSelectedRow(), 0),
                         JOptionPane.INFORMATION_MESSAGE);
             }

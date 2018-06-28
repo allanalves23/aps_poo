@@ -5,6 +5,9 @@ import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,7 +36,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     private Jogo game;//Objeto que retém as configurações do jogo
     private int flagTeclas;//flag para detectar o backspace ao ser pressionado
     private boolean flagAjuda;//flag para detectar se o modo Ajuda esta desativado ou ativado
-    private String version =  "1.2.9";//Variavel para associar a versão do programa dentro do botão 'Sobre'
+    private String version =  "1.3.0";//Variavel para associar a versão do programa dentro do botão 'Sobre'
     private ResultadoRodada resultados;
     private int cont = 0;
     private Timer timer = new Timer();
@@ -48,7 +51,11 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         flagTeclas = 0;//backspace nao esta pressionado por padrao
         flagAjuda = false;//modo ajuda desabilitado
         resultados=new ResultadoRodada();
-        Player.nome="USER";
+        try {
+            carregarUser();
+        } catch (IOException ex) {
+            Player.nome="USER";
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -269,6 +276,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         aspasBtn.setText("'");
         aspasBtn.setMaximumSize(new java.awt.Dimension(48, 48));
         aspasBtn.setMinimumSize(new java.awt.Dimension(48, 48));
+        aspasBtn.setPreferredSize(new java.awt.Dimension(39, 23));
         aspasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aspasBtnActionPerformed(evt);
@@ -860,7 +868,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(aspasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(umBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(doisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tresBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -873,7 +880,8 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                             .addComponent(zeroBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(menosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(backspcBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backspcBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aspasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1045,7 +1053,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             timerLbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             timerLbl.setForeground(new java.awt.Color(255, 255, 255));
             timerLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            timerLbl.setText("00 : 00 : 00");
+            timerLbl.setText("00 : 00 ");
 
             javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
             jPanel3.setLayout(jPanel3Layout);
@@ -1327,10 +1335,10 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     
     private String definirUser(String user){
         try {
-            FileWriter arq = new FileWriter("C:\\aps-poo\\user.txt");
-            PrintWriter pr = new PrintWriter(arq);
-            pr.println(user);
-            arq.close();
+            try (FileWriter arq = new FileWriter("C:\\aps-poo\\user.txt")) {
+                PrintWriter pr = new PrintWriter(arq);
+                pr.println(user);
+            }
             return user;
         } catch (IOException ex) {
             Logger.getLogger(AplicationPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -1338,6 +1346,16 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         return null;
     }
     
+    private void carregarUser() throws FileNotFoundException, IOException{
+        try (FileReader arq = new FileReader("C:\\aps-poo\\user.txt")) {
+            BufferedReader br = new BufferedReader(arq);
+            Player.nome=br.readLine();
+            if(Player.nome==null){
+                Player.nome="USER";
+            }
+            arq.close();
+        }
+    }
     private void questionRestartGame(){
         if(!acertoValor.getText().equals("0") || !erroValor.getText().equals("0")){
             if(JOptionPane.showConfirmDialog(this, "Carregar um novo pangrama reiniciará o jogo atual", "Tem certeza?", JOptionPane.YES_NO_OPTION)==0){
@@ -1373,10 +1391,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuGerarPangActionPerformed
    
     private void newGameStats(boolean predefined){//carrega um novo jogo sobrescrevendo o antigo(caso possuir)
-        if(newGameBtn.getForeground()== Color.WHITE){
-            newGameBtn.setBackground(Color.WHITE);
-            newGameBtn.setForeground(Color.BLACK);
-        }
         if(!predefined){
             pangramaLabel.setText(carregarPangrama());
         }else{
@@ -1394,7 +1408,13 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         if(!menuConfigPangrama.isEnabled()){
             menuConfigPangrama.setEnabled(true);
         }
+        carregarCronometro();
         contagemTempo();
+    }
+    
+    private void carregarCronometro(){
+        timer.cancel();
+        timer = new Timer();
     }
     
     private void resetTextArea(){//habilita o jTextField e remove o texto
@@ -1402,6 +1422,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         textArea.setText("");
         textArea.requestFocus();
     }
+    
     
     private void alterarEstadoItensMenu(boolean state){
         if(state){
@@ -1417,6 +1438,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
         percentValor.setText("0");
         erroValor.setText("0");
         acertoValor.setText("0");
+        timerLbl.setText("00 : 00");
     }
     
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
@@ -1523,7 +1545,6 @@ public class AplicationPrincipal extends javax.swing.JFrame {
             }
             if(game.fimJogo()){//verifica se o jogo terminou com base no tamanho em caracteres da frase certa com o pangrama
                 timer.cancel();
-                System.out.println(timerLbl.getText());
                 resultados.pressetValue(Player.nome,pangramaLabel.getText(), game.getAcertos(), game.getErros(), game.getPercent(),timerLbl.getText());
                 if(!btnUltimosResultados.isVisible() && !menuUltimosResultados.isEnabled()){
                     btnUltimosResultados.setVisible(true);
@@ -2055,7 +2076,9 @@ public class AplicationPrincipal extends javax.swing.JFrame {
     }
     
     private void contagemTempo(){
-        
+        if(cont!= 0){
+            cont =0;
+        }
         
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -2063,8 +2086,7 @@ public class AplicationPrincipal extends javax.swing.JFrame {
                 cont++;
                 int segundos = cont % 60;
                 int minutos = cont / 60;
-                int horas = minutos / 60;
-                timerLbl.setText(String.format("%02d : %02d : %02d", horas,minutos,segundos,cont));
+                timerLbl.setText(String.format("%02d : %02d", minutos, segundos));
             }
         }, 1000, 1000);
     }
