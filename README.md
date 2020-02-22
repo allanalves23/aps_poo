@@ -1,15 +1,12 @@
-﻿# aps_poo
-Aps - Teclado virtual/treinamento de digitação
-Programação orientada a objeto
+﻿# pangrama-challenge
+Jogo de digitação de pangramas
 
-==== RELEASE NOTES ====
-aps_poo v1.3
+### Motivação
+Motivado por atividades acadêmicas
 
--  Fixado bug do cronometro ao resetar o jogo multiplas vezes
--  Ajustado disposição ao visualizar os dados de tempo na janela de scores
--  Inserção de nome do usuário definitivo implementado
+**Versão**: 1.3
 
-========================
+Últimas atualizações: https://github.com/allanalves23/pangrama-challenge/releases/tag/1.3.0
 
 Download link: https://drive.google.com/open?id=1WeKeTSRRpoKDiSOXhEvDTelxCkPQuvGK
 
